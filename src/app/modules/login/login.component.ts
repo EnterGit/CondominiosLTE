@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.isFacebookLoading = false;
     }
 
+    //destroy login page class
     ngOnDestroy() {
         this.renderer.removeClass(
             document.querySelector('app-root'),

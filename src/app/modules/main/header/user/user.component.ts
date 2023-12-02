@@ -21,6 +21,10 @@ export class UserComponent implements OnInit {
     }
 
     formatDate(date) {
-        return DateTime.fromISO(date).toFormat('dd LLL yyyy');
+        // console.log(date);
+        // return DateTime.fromISO(date).toFormat('dd LLL yyyy');
+
+        const currentDate = new Date();
+        return currentDate.toLocaleDateString();
     }
 }

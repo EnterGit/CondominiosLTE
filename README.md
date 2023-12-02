@@ -1,11 +1,4 @@
 <h1 align="center">Abrete Sesamo 1.0.0 - Angular 15.0.1</h1>
-
-<p>
-  This repository is a form of original AdminLTE project. It is aim to use AdminLTE template with Angular.
-</p>
-<br>
-
-
 <br>
 
 ## Development server

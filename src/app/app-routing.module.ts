@@ -51,7 +51,7 @@ const routes: Routes = [
                 component: CondominiosComponent
             },   
             {
-                path: 'crud-portones',
+                path: 'crudportones',
                 component: CrudPortonesComponent
             },
             {

@@ -1,26 +1,10 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpEventType } from '@angular/common/http';
-//import { Lparametros } from './../core/parametros/parametros';
-
-//import { Lregiones, Lcomuna } from './../core/parametros/regiones.model';
-
 import { Router, ActivatedRoute } from '@angular/router';
-//import { Component, OnInit } from '@angular/core';
-
-
-
 import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-//import { RutService } from 'rut-chileno';
-//import { confirmedValidator } from './../confirmed.validator';
-//import { EncriptarService } from './../services/seguridad/encriptar.service';
 import { DatePipe } from '@angular/common';
-
-
 import { crudPortonesService } from '../../services/crudportones.services';
-
-
 import { Component, OnInit } from '@angular/core';
-
 import { MatDialog } from '@angular/material/dialog';
 import { PortonesComponent } from '../popup/portones/portones.component';
 import { MatInputModule } from '@angular/material/input';

@@ -24,6 +24,9 @@ export class AppService {
 
     async loginByAuth({email, password}) {
         try {
+            console.log('email', email);
+            console.log('password', password);
+
             const token = await this.getLogin(email, password).toPromise(); //await Gatekeeper.loginByAuth(email, password);
             localStorage.setItem('token', token);
             await this.getProfile();
@@ -37,6 +40,7 @@ export class AppService {
             
         } catch (error) {
             this.toastr.error(error.message);
+            console.log('error', error);
         }
     }
 

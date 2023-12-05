@@ -15,6 +15,23 @@ import {SubMenuComponent} from '@pages/main-menu/sub-menu/sub-menu.component';
 import { CondominiosComponent } from '@pages/condominios/condominios.component';
 import { AuthmenuGuard } from '@guards/authmenu.guard';
 
+//paginas
+import { CrudPortonesComponent } from './pages/crud-portones/crud-portones.component';
+import { ConfiguracionesComponent } from '@pages/configuraciones/configuraciones.component';
+import { EstacionamientosComponent } from '@pages/estacionamientos/estacionamientos.component';
+import { VisitasComponent } from '@pages/visitas/visitas.component';
+import { PropiedadComponent } from '@pages/propiedad/propiedad.component';
+import { VehiculosComponent } from '@pages/vehiculos/vehiculos.component';
+import { ZonaComponent } from '@pages/zona/zona.component';
+//popup
+import { PortonesComponent } from './pages/popup/portones/portones.component';
+import { CrudZonasComponent } from './pages/popup/crud-zonas/crud-zonas.component';
+import { CrudPropiedadComponent } from './pages/popup/crud-propiedad/crud-propiedad.component';
+import { CrudEstacionamientosComponent } from './pages/popup/crud-estacionamientos/crud-estacionamientos.component';
+import { CrudVisitasComponent } from './pages/popup/crud-visitas/crud-visitas.component';
+import { CrudVehiculoComponent } from './pages/popup/crud-vehiculo/crud-vehiculo.component';
+
+
 const routes: Routes = [
     {
         path: '',

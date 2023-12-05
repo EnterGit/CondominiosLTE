@@ -1,0 +1,14 @@
+<form [formGroup]="myform" (ngSubmit)="SavePorton()">
+    
+    <h1 mat-dialog-title>{{inputdata.title}}</h1>
+    <div mat-dialog-content>
+        <mat-form-field>
+            <input matInput formControlName="descripcion" placeholder="Enter the text">
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button type="submit" color="primary">Guardar</button>
+      <a (click)="closepopup()" mat-raised-button color="warn">Cerrar</a>
+      <button mat-raised-button [mat-dialog-close]="closemessage" color="accent">Cancel</button> 
+    </div>
+</form>

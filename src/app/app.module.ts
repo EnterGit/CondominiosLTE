@@ -36,12 +36,26 @@ import {ProfabricComponentsModule} from '@profabric/angular-components';
 import {SidebarSearchComponent} from './components/sidebar-search/sidebar-search.component';
 import { CondominiosComponent } from './pages/condominios/condominios.component';
 
+//Material
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
+
+
+//paginas
+import { CrudPortonesComponent } from '../app/pages/crud-portones/crud-portones.component';
+import { PortonesComponent } from './pages/popup/portones/portones.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+
+
+
 registerLocaleData(localeEn, 'en-EN');
 
 @NgModule({
     declarations: [
         AppComponent,
-        MainComponent,
+               MainComponent,
         LoginComponent,
         HeaderComponent,
         FooterComponent,
@@ -61,9 +75,15 @@ registerLocaleData(localeEn, 'en-EN');
         MenuItemComponent,
         ControlSidebarComponent,
         SidebarSearchComponent,
-        CondominiosComponent
+        CondominiosComponent,
+        CrudPortonesComponent,
+        PortonesComponent
     ],
     imports: [
+        MatCardModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatDialogModule,
         ProfabricComponentsModule,
         CommonModule,
         BrowserModule,

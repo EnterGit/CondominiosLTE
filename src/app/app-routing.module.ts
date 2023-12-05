@@ -14,6 +14,10 @@ import {MainMenuComponent} from '@pages/main-menu/main-menu.component';
 import {SubMenuComponent} from '@pages/main-menu/sub-menu/sub-menu.component';
 import { CondominiosComponent } from '@pages/condominios/condominios.component';
 
+//paginas
+import { CrudPortonesComponent } from './pages/crud-portones/crud-portones.component';
+import { PortonesComponent } from './pages/popup/portones/portones.component';
+
 const routes: Routes = [
     {
         path: '',
@@ -32,7 +36,19 @@ const routes: Routes = [
             {
                 path: 'condominios',
                 component: CondominiosComponent
+            },   
+            {
+                path: 'crud-portones',
+                component: CrudPortonesComponent
+            },
+            {
+                path: 'portones',
+                component: PortonesComponent
             },            
+            {
+                path: 'main-menu',
+                component: MainMenuComponent
+            },       
             {
                 path: 'sub-menu-1',
                 component: SubMenuComponent

@@ -10,6 +10,7 @@ import { PortonesComponent } from '../popup/portones/portones.component';
 import { MatInputModule } from '@angular/material/input';
 import{MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
+import { PopupService } from '@services/popup.service';
 
 @Component({
   selector: 'app-crud-portones',
@@ -41,6 +42,8 @@ export class CrudPortonesComponent implements OnInit {
   (
     private crudPortonesService: crudPortonesService,
     private dialog: MatDialog,
+    private popupService: PopupService
+    
     //declara variable condominioID.
   
     
@@ -67,31 +70,18 @@ export class CrudPortonesComponent implements OnInit {
 
     
 ngOnInit(): void {
-
-this.listarPortones('1');
-
-
- 
-
-
-
- 
-
+  this.listarPortones('1');
   }    
 
 
   onSubmit() {
-  
     console.log(this.formPortones.value);
-   
-  
   }
 
 
   //listar portones
 listarPortones(CondominioID: string,) {
   console.log('listarPortones fue llamado con:' + CondominioID); // Agrega esto
-
   this.crudPortonesService.getlistPortones(CondominioID).subscribe({
     next: (portones) => {
       console.log('getlistPortones respondió con', portones); // Agrega esto
@@ -102,8 +92,6 @@ listarPortones(CondominioID: string,) {
     }
   });
 }
-
-
 
 editarPorton(PortonID: string, CondominioID: string, Descripcion: string) {
   console.log('updatePorton fue llamado con', PortonID, CondominioID, Descripcion); // Agrega esto
@@ -120,14 +108,8 @@ editarPorton(PortonID: string, CondominioID: string, Descripcion: string) {
   });
 }
 
-
-
-
-
-
 addPorton(CondominioID: string, Descripcion: string) {
   console.log('addPorton fue llamado con', CondominioID, Descripcion); // Agrega esto
-
   this.crudPortonesService.getAddPortones(CondominioID, Descripcion).subscribe({
     next: (response) => {
       console.log('getAddPortones respondió con', response); // Agrega esto
@@ -140,12 +122,8 @@ addPorton(CondominioID: string, Descripcion: string) {
   });
 }
 
-
-
-
 deletePorton(PortonID: string) {
   console.log('deletePorton fue llamado con', PortonID); // Agrega esto
-
   this.crudPortonesService.getDeletePortones(PortonID).subscribe({
     next: (response) => {
       console.log('getDeletePortones respondió con', response); // Agrega esto
@@ -159,25 +137,23 @@ deletePorton(PortonID: string) {
 }
 
 Openpopup() {
+
   console.log('Openpopup fue llamado'); // Agrega esto
-var _popup= this.dialog.open(PortonesComponent, {
-  width: '60%',
-  enterAnimationDuration: '1000ms',
-  exitAnimationDuration: '1000ms',
-  height: '400px',
-  data: { 
-  title : "Formulario de Registro Portones 222"
-    
-  } 
-  
-  });
-  _popup.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
+  // var _popup= this.dialog.open(PortonesComponent, {
+  //   width: '60%',
+  //   enterAnimationDuration: '1000ms',
+  //   exitAnimationDuration: '1000ms',
+  //   height: '400px',
+  //   data: { 
+  //   title : "Formulario de Registro Portones 222"
+  //   } 
+  //    });
+  //   _popup.afterClosed().subscribe(result => {
+  //     console.log('The dialog was closed');
+  //   }
+  //   );
+
+  this.popupService.openPopup(PortonesComponent, 'admin', 'Formulario de Registro Portones');
   }
-  );
-
-}
-
-
 
 }

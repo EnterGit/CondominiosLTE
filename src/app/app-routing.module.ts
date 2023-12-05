@@ -55,11 +55,15 @@ const routes: Routes = [
             },
             {
                 path: 'crudportones',
-                component: CrudPortonesComponent
+                component: CrudPortonesComponent,
+                canActivate: [AuthmenuGuard],
+                data: { role: 'admin' }
             },
             {
                 path: 'portones',
-                component: PortonesComponent
+                component: PortonesComponent,
+                canActivate: [AuthmenuGuard],
+                data: { role: 'admin1' }
             },
             {
                 path: 'configuraciones',

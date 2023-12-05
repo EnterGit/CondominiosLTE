@@ -47,6 +47,18 @@ import { CrudPortonesComponent } from '../app/pages/crud-portones/crud-portones.
 import { PortonesComponent } from './pages/popup/portones/portones.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ConfiguracionesComponent } from './pages/configuraciones/configuraciones.component';
+import { EstacionamientosComponent } from './pages/estacionamientos/estacionamientos.component';
+import { VehiculosComponent } from './pages/vehiculos/vehiculos.component';
+import { VisitasComponent } from './pages/visitas/visitas.component';
+import { ZonaComponent } from './pages/zona/zona.component';
+import { PropiedadComponent } from './pages/propiedad/propiedad.component';
+import { CrudConfiguracionesComponent } from './pages/popup/crud-configuraciones/crud-configuraciones.component';
+import { CrudEstacionamientosComponent } from './pages/popup/crud-estacionamientos/crud-estacionamientos.component';
+import { CrudPropiedadComponent } from './pages/popup/crud-propiedad/crud-propiedad.component';
+import { CrudVehiculoComponent } from './pages/popup/crud-vehiculo/crud-vehiculo.component';
+import { CrudVisitasComponent } from './pages/popup/crud-visitas/crud-visitas.component';
+import { CrudZonasComponent } from './pages/popup/crud-zonas/crud-zonas.component';
 
 
 
@@ -77,7 +89,19 @@ registerLocaleData(localeEn, 'en-EN');
         SidebarSearchComponent,
         CondominiosComponent,
         CrudPortonesComponent,
-        PortonesComponent
+        PortonesComponent,
+        ConfiguracionesComponent,
+        EstacionamientosComponent,
+        VehiculosComponent,
+        VisitasComponent,
+        ZonaComponent,
+        PropiedadComponent,
+        CrudConfiguracionesComponent,
+        CrudEstacionamientosComponent,
+        CrudPropiedadComponent,
+        CrudVehiculoComponent,
+        CrudVisitasComponent,
+        CrudZonasComponent
     ],
     imports: [
         MatCardModule,

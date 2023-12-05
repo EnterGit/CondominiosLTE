@@ -13,6 +13,7 @@ import {RecoverPasswordComponent} from '@modules/recover-password/recover-passwo
 import {MainMenuComponent} from '@pages/main-menu/main-menu.component';
 import {SubMenuComponent} from '@pages/main-menu/sub-menu/sub-menu.component';
 import { CondominiosComponent } from '@pages/condominios/condominios.component';
+import { AuthmenuGuard } from '@guards/authmenu.guard';
 
 const routes: Routes = [
     {
@@ -26,13 +27,15 @@ const routes: Routes = [
                 component: ProfileComponent
             },
             {
+                path: 'condominios',
+                component: CondominiosComponent,
+                canActivate: [AuthmenuGuard],
+                data: { role: 'admin' }
+            },  
+            {
                 path: 'blank',
                 component: BlankComponent
-            },
-            {
-                path: 'condominios',
-                component: CondominiosComponent
-            },            
+            },         
             {
                 path: 'sub-menu-1',
                 component: SubMenuComponent

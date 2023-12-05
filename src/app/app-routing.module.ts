@@ -119,6 +119,7 @@ const routes: Routes = [
                 component: DashboardComponent
             }
         ]
+        
     },
     {
         path: 'login',

@@ -49,6 +49,11 @@ export const MENU = [
         path: ['/condominios']
     },
     {
+        name:'Portones',
+        iconClasses: 'fas fa-door-open',
+        path: ['/crudportones']
+    },
+    {
         name: 'Main Menu',
         iconClasses: 'fas fa-folder',        
         children: [

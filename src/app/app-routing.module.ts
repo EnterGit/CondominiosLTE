@@ -13,6 +13,7 @@ import {RecoverPasswordComponent} from '@modules/recover-password/recover-passwo
 import {MainMenuComponent} from '@pages/main-menu/main-menu.component';
 import {SubMenuComponent} from '@pages/main-menu/sub-menu/sub-menu.component';
 import { CondominiosComponent } from '@pages/condominios/condominios.component';
+import { AuthmenuGuard } from '@guards/authmenu.guard';
 
 //paginas
 import { CrudPortonesComponent } from './pages/crud-portones/crud-portones.component';
@@ -43,13 +44,15 @@ const routes: Routes = [
                 component: ProfileComponent
             },
             {
+                path: 'condominios',
+                component: CondominiosComponent,
+                 canActivate: [AuthmenuGuard],
+                 data: { role: 'admin' }
+            },
+            {
                 path: 'blank',
                 component: BlankComponent
             },
-            {
-                path: 'condominios',
-                component: CondominiosComponent
-            },   
             {
                 path: 'crudportones',
                 component: CrudPortonesComponent
@@ -57,55 +60,55 @@ const routes: Routes = [
             {
                 path: 'portones',
                 component: PortonesComponent
-            },  
+            },
             {
                 path: 'configuraciones',
                 component: ConfiguracionesComponent
-            },  
+            },
             {
                 path: 'estacionamientos',
                 component: EstacionamientosComponent
-            },  
+            },
             {
                 path: 'crud-estacionamientos',
                 component: CrudEstacionamientosComponent
-            },  
+            },
             {
                 path: 'visitas',
                 component: VisitasComponent
-            },  
+            },
             {
                 path: 'crud-visitas',
                 component: CrudVisitasComponent
-            },  
+            },
             {
                 path: 'propiedad',
                 component: PropiedadComponent
-            },  
+            },
             {
                 path: 'crud-propiedad',
                 component: CrudPropiedadComponent
-            },  
+            },
             {
                 path: 'vehiculos',
                 component: VehiculosComponent
-            },  
+            },
             {
                 path: 'crud-vehiculo',
                 component: CrudVehiculoComponent
-            },  
+            },
             {
                 path: 'zona',
                 component: ZonaComponent
-            },  
+            },
             {
                 path: 'crud-zonas',
                 component: CrudZonasComponent
-            },          
+            },
             {
                 path: 'main-menu',
                 component: MainMenuComponent
-            },       
+            },
             {
                 path: 'sub-menu-1',
                 component: SubMenuComponent
@@ -115,11 +118,10 @@ const routes: Routes = [
                 component: BlankComponent
             },
             {
-                path: '',
+                path: 'dashboard',
                 component: DashboardComponent
             }
         ]
-        
     },
     {
         path: 'login',
@@ -141,7 +143,7 @@ const routes: Routes = [
         component: RecoverPasswordComponent,
         canActivate: [NonAuthGuard]
     },
-    {path: '**', redirectTo: ''}
+    { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

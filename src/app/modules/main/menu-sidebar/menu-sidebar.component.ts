@@ -29,6 +29,8 @@ export class MenuSidebarComponent implements OnInit {
         });
     // this.user = this.appService.user;
         this.user = this.appService.obtenerProfile();
+        //this.menu = MENU.filter((item) => item.roles.includes(this.user.ROLE));
+        this.menu = MENU.filter(item => item.roles && item.roles.includes(this.user.ROLE));
     }
 }
 
@@ -36,17 +38,20 @@ export const MENU = [
     {
         name: 'Dashboard',
         iconClasses: 'fas fa-tachometer-alt',
-        path: ['/']
+        path: ['/'],
+        roles: ['admin', 'user']
     },
     {
         name: 'Blank',
         iconClasses: 'fas fa-file',
-        path: ['/blank']
+        path: ['/blank'],
+        roles: ['admin', 'user']
     },
     {
         name: 'Condominios',
         iconClasses: 'fas fa-home',
-        path: ['/condominios']
+        path: ['/condominios'],
+        roles: ['admin', 'user']
     },
     {
         name:'Portones',
@@ -55,17 +60,20 @@ export const MENU = [
     },
     {
         name: 'Main Menu',
-        iconClasses: 'fas fa-folder',        
+        iconClasses: 'fas fa-folder',
+        roles: ['admin', 'user'],        
         children: [
             {
                 name: 'Sub Menu',
                 iconClasses: 'far fa-address-book',
-                path: ['/sub-menu-1']
+                path: ['/sub-menu-1'],
+                roles: ['admin', 'user']
             },
             {
                 name: 'Blank',
                 iconClasses: 'fas fa-file',
-                path: ['/sub-menu-2']
+                path: ['/sub-menu-2'],
+                roles: ['admin', 'user']
             }
         ]
     }

@@ -56,7 +56,8 @@ export const MENU = [
     {
         name:'Portones',
         iconClasses: 'fas fa-door-open',
-        path: ['/crudportones']
+        path: ['/crudportones'],
+        roles: ['admin', 'user']
     },
     {
         name: 'Main Menu',

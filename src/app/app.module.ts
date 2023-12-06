@@ -59,6 +59,7 @@ import { CrudPropiedadComponent } from './pages/popup/crud-propiedad/crud-propie
 import { CrudVehiculoComponent } from './pages/popup/crud-vehiculo/crud-vehiculo.component';
 import { CrudVisitasComponent } from './pages/popup/crud-visitas/crud-visitas.component';
 import { CrudZonasComponent } from './pages/popup/crud-zonas/crud-zonas.component';
+import { MatInputModule } from '@angular/material/input';
 
 
 
@@ -108,6 +109,7 @@ registerLocaleData(localeEn, 'en-EN');
         MatFormFieldModule,
         MatButtonModule,
         MatDialogModule,
+        MatInputModule,
         ProfabricComponentsModule,
         CommonModule,
         BrowserModule,

@@ -90,7 +90,6 @@ exports.getByCode = async (req, res) => {
     console.log('DEsde servicio getByCode');
     console.log(req.params.PortonID);
     const { PortonID } = req.params;
-
     try {
         const [rows] = await db.execute(`
             SELECT portones.*, condominios.Nombre 

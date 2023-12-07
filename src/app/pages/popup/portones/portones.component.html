@@ -3,12 +3,22 @@
     <h1 mat-dialog-title>{{inputdata.title}}</h1>
     <div mat-dialog-content>
         <mat-form-field>
-            <input matInput formControlName="descripcion" placeholder="Enter the text">
+            <mat-label>PortonID</mat-label>
+            <input formControlName="PortonID" matInput>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input formControlName="Nombre" matInput>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>descripcion</mat-label>
+            <input formControlName="descripcion" matInput>
         </mat-form-field>
     </div>
-    <div mat-dialog-actions>
-        <button mat-raised-button type="submit" color="primary">Guardar</button>
-      <a (click)="closepopup()" mat-raised-button color="warn">Cerrar</a>
-      <button mat-raised-button [mat-dialog-close]="closemessage" color="accent">Cancel</button> 
-    </div>
+<div mat-dialog-actions>
+    <button mat-raised-button type="submit" color="primary" *ngIf="!showUpdateButton">Guardar</button> <!-- modify this line -->
+    <button mat-raised-button *ngIf="showUpdateButton" color="primary" (click)="updatePorton()">Actualizar</button>
+    <a (click)="closepopup()" mat-raised-button color="warn">Cerrar</a>
+    
+</div>
 </form>

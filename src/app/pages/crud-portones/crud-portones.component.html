@@ -36,8 +36,15 @@
                         <td>{{ porton.CondominioID }}</td>
                         <td>{{ porton.Descripcion }}</td>
                         <td>
-                            <button class="btn btn-primary" (click)="editarPorton(porton.PortonID, porton.CondominioID, porton.Descripcion)">Editar</button>
-                            <button class="btn btn-danger">Eliminar</button>
+                         <!--   <button class="btn btn-primary" (click)="editarPorton(porton.PortonID, porton.CondominioID, porton.Descripcion)">Editar</button>
+                            <button class="btn btn-danger">Eliminar</button>-->
+
+
+                            
+
+                                <button (click)="editcustomer(porton.PortonID)" mat-raised-button color="primary">Edit</button>
+                                <button mat-raised-button color="warn">Delete</button>
+                             
                         </td>
                     </tr>
                 </tbody>

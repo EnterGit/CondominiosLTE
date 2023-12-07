@@ -9,7 +9,7 @@ export class PopupService {
 
   constructor(private appService: AppService, private dialog: MatDialog) { }
 
-  openPopup(component: any, role: string, titulo: string) {
+  openPopup(component: any, role: string, titulo: string, valor:any) {
     const user = this.appService.obtenerProfile();
     if (user && user.ROLE === role) {
       // Abre el popup
@@ -17,7 +17,8 @@ export class PopupService {
         width: '60%',
         height: '400px',
         data: { 
-          title : titulo
+          title : titulo,
+          code:valor
         } 
       });
   
@@ -29,5 +30,8 @@ export class PopupService {
       alert("NO TIENE ACCESO A ESTA FUNCIONALIDAD");
     }
   }
+
+
+
   
 }

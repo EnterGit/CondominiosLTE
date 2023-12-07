@@ -25,14 +25,15 @@ export class crudPortonesService {
       }
     
       //agrega update portones
-      getUpdatePortones(PortonID: string, CondominioID: string, Descripcion: string): Observable<any> {
-        const token = JSON.parse(localStorage.getItem('ACCESO') ?? '{}');
-          return this.http.put('http://localhost:3000/portones/update', {
-            PortonID,
-            CondominioID,
-            Descripcion,
-          });
-        }
+    getUpdatePortones(PortonID: string, CondominioID: string, Descripcion: string): Observable<any> {
+      const token = JSON.parse(localStorage.getItem('ACCESO') ?? '{}');
+      return this.http.put(`http://localhost:3000/portones/update/${PortonID}`, {
+        CondominioID,
+        Descripcion,
+      });
+    }
+
+
     
         //agrega delete portones
       getDeletePortones(PortonID: string): Observable<any> {
@@ -72,27 +73,29 @@ getlistPortones(CondominioID: string): Observable<any> {
   );
 }
 
-  
-      
-      
 
 
+// Get porton by PortonID
+getByPortonId(PortonID: string): Observable<any> {
+  console.log('getByPortonId was called with', PortonID);
+
+  const token = JSON.parse(localStorage.getItem('ACCESO') ?? '{}');
+  return this.http.get(`http://localhost:3000/portones/getByCode/${PortonID}`, {
   
-  
-  
-  
-  
-  /*{
-        "Rut": "15259193-4",
-        "Nombres": "César",
-        "Apellidos": "Collin",
-        "CorreoElectronico": "cesar.trabajos@gmail.com",
-        "Contrasena": "12345",
-        "FechaRegistro": "2023-11-05T17:21:00.000Z",
-        "FechaActualizacion": "2023-11-05T17:21:00.000Z",
-        "Token": "def456",
-        "Telefono": "5634567890",
-        "Estado": "Activo"
-    }
-    */
+
+    headers: { 'x-token': token },
+  }).pipe(
+    tap((response: any) => {
+      console.log('getByPortonId responded with', response);
+    }),
+    catchError((error: any) => {
+      console.log('There was an error getting the porton', error);
+      throw error;
+    })
+  );
+}
+
+
+
+
   }

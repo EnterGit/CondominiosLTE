@@ -63,6 +63,19 @@ exports.delete = async (req, res) => {
     }
 };
 
+//GetPortonbycode
+exports.getbycode = async (req, res) => {
+    const { PortonID } = req.params;
+
+    try {
+        const [rows] = await db.execute("SELECT * FROM portones WHERE PortonID = ?", [PortonID]);
+        res.status(200).send(rows);
+    } catch (error) {
+        console.error('Error: ', error);
+        res.status(500).send({ message: 'No fue posible obtener el portón', error: error });
+    }
+};
+
 
 
 exports.listByCondominioID = async (req, res) => {

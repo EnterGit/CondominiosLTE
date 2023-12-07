@@ -153,7 +153,18 @@ Openpopup() {
   //   }
   //   );
 
-  this.popupService.openPopup(PortonesComponent, 'admin', 'Formulario de Registro Portones');
+  this.popupService.openPopup(PortonesComponent, 'admin2', 'Formulario de Registro Portones 2', "");
   }
+
+  editcustomer(code: any) {
+    console.log('editcustomer fue llamado  web', code); // Agrega esto
+    //this.Openpopup(code, 'Edit Customer',PortonesComponent);
+  
+    this.popupService.openPopup(PortonesComponent, 'admin', 'Editar Porton', code);
+
+  }
+
+ 
+
 
 }

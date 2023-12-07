@@ -28,6 +28,12 @@ exports.add = async (req, res) => {
 exports.update = async (req, res) => {
     const { CondominioID, Descripcion } = req.body;
     const { PortonID } = req.params;
+    console.log(`Attempting to update porton with ID: ${PortonID}`);
+    console.log(req.body);
+    console.log(req.params);
+    console.log(CondominioID);
+    console.log(Descripcion);
+    console.log(PortonID);
 
     try {
         const [result] = await db.execute("UPDATE portones SET CondominioID = ?, Descripcion = ? WHERE PortonID = ?", [CondominioID, Descripcion, PortonID]);
@@ -63,19 +69,6 @@ exports.delete = async (req, res) => {
     }
 };
 
-//GetPortonbycode
-exports.getbycode = async (req, res) => {
-    const { PortonID } = req.params;
-
-    try {
-        const [rows] = await db.execute("SELECT * FROM portones WHERE PortonID = ?", [PortonID]);
-        res.status(200).send(rows);
-    } catch (error) {
-        console.error('Error: ', error);
-        res.status(500).send({ message: 'No fue posible obtener el portón', error: error });
-    }
-};
-
 
 
 exports.listByCondominioID = async (req, res) => {
@@ -89,4 +82,30 @@ exports.listByCondominioID = async (req, res) => {
         res.status(500).send({ message: 'No fue posible obtener la lista de portones', error: error });
     }
 };
+
+
+
+//get Portones by portonID
+exports.getByCode = async (req, res) => {
+    console.log('DEsde servicio getByCode');
+    console.log(req.params.PortonID);
+    const { PortonID } = req.params;
+
+    try {
+        const [rows] = await db.execute(`
+            SELECT portones.*, condominios.Nombre 
+            FROM portones 
+            INNER JOIN condominios ON portones.CondominioID = condominios.CondominioID 
+            WHERE PortonID = ?
+        `, [PortonID]);
+        res.status(200).send(rows);
+    } catch (error) {
+        console.error('Error: ', error);
+        res.status(500).send({ message: 'No fue posible obtener el portón', error: error });
+    }
+};
+
+
+
+
 

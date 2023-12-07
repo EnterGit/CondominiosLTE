@@ -39,13 +39,13 @@ import { CondominiosComponent } from './pages/condominios/condominios.component'
 //Material
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
+import {MatIconModule} from '@angular/material/icon';
 
 
 //paginas
 import { CrudPortonesComponent } from '../app/pages/crud-portones/crud-portones.component';
 import { PortonesComponent } from './pages/popup/portones/portones.component';
-import { MatButtonModule } from '@angular/material/button';
+import { MatButtonModule, MatIconButton } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfiguracionesComponent } from './pages/configuraciones/configuraciones.component';
 import { EstacionamientosComponent } from './pages/estacionamientos/estacionamientos.component';
@@ -60,6 +60,7 @@ import { CrudVehiculoComponent } from './pages/popup/crud-vehiculo/crud-vehiculo
 import { CrudVisitasComponent } from './pages/popup/crud-visitas/crud-visitas.component';
 import { CrudZonasComponent } from './pages/popup/crud-zonas/crud-zonas.component';
 import { MatInputModule } from '@angular/material/input';
+import { ShowforrolesDirective } from './guards/directives/showforroles.directive';
 
 
 
@@ -102,7 +103,8 @@ registerLocaleData(localeEn, 'en-EN');
         CrudPropiedadComponent,
         CrudVehiculoComponent,
         CrudVisitasComponent,
-        CrudZonasComponent
+        CrudZonasComponent,
+        ShowforrolesDirective
     ],
     imports: [
         MatCardModule,
@@ -110,6 +112,7 @@ registerLocaleData(localeEn, 'en-EN');
         MatButtonModule,
         MatDialogModule,
         MatInputModule,
+        MatIconModule,
         ProfabricComponentsModule,
         CommonModule,
         BrowserModule,
@@ -125,6 +128,9 @@ registerLocaleData(localeEn, 'en-EN');
         })
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    exports: [
+      ShowforrolesDirective
+    ]
 })
 export class AppModule {}

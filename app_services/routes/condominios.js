@@ -6,6 +6,6 @@ const validaToken = require('../routes/validatoken');
 
 router.get('/', validaToken, CondominioController.leer);
 router.post('/add', validaToken, CondominioController.add);
-
+router.get('/:id', validaToken, CondominioController.showByCondominioID);
 
 module.exports = router;

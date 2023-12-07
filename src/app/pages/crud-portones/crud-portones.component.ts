@@ -11,7 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import{MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { PopupService } from '@services/popup.service';
-
+import { UpdatePageService } from '@services/update-page.service';
 @Component({
   selector: 'app-crud-portones',
   templateUrl: './crud-portones.component.html',
@@ -42,8 +42,8 @@ export class CrudPortonesComponent implements OnInit {
   (
     private crudPortonesService: crudPortonesService,
     private dialog: MatDialog,
-    private popupService: PopupService
-    
+    private popupService: PopupService,
+    private updatePageService: UpdatePageService
     //declara variable condominioID.
   
     
@@ -63,7 +63,11 @@ export class CrudPortonesComponent implements OnInit {
 
       this.titulo = "Formulario de Registro Postulante";
       this.imagen = "https://media.istockphoto.com/vectors/online-registration-form-vector-id1199278357";
-     
+      
+      this.updatePageService.updatePageObservable.subscribe(() => {
+        this.listarPortones('1');
+      });
+
     }
 
 
@@ -154,6 +158,7 @@ Openpopup() {
   //   );
 
   this.popupService.openPopup(PortonesComponent, 'admin2', 'Formulario de Registro Portones 2', "");
+
   }
 
   editcustomer(code: any) {
@@ -163,8 +168,6 @@ Openpopup() {
     this.popupService.openPopup(PortonesComponent, 'admin', 'Editar Porton', code);
 
   }
-
- 
 
 
 }

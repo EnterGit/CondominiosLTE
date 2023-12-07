@@ -21,5 +21,14 @@ export class ListarcondominiosService {
     return this.http.get('http://localhost:3000/condominios', { headers });
 
   }
+
+
+
+  getCondominioId(condominio: string): Observable<any>{
+    // Aquí va la lógica para obtener tu token
+    const token = JSON.parse(localStorage.getItem('ACCESO') ?? '{}');
+    const headers = { 'Authorization': 'Bearer ' + token };
+    return this.http.get('http://localhost:3000/condominios/' + condominio, { headers });
+  } 
 }
 

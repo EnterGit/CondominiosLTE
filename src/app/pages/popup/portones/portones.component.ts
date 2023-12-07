@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormBuilder,FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
@@ -8,6 +8,7 @@ import {ToastrService} from 'ngx-toastr';
 //servicio
 
 import { crudPortonesService } from '../../../services/crudportones.services';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,7 +20,9 @@ export class PortonesComponent implements OnInit {
   inputdata: any;
   editdata: any;
   closemessage = 'closed using directive'
-
+  
+  @Output() callParentMethod = new EventEmitter<void>();
+  
   private porton_ID: string;
   private condominio_ID: string;
 
@@ -32,6 +35,7 @@ showUpdateButton = false; // add this line to your component properties
      private buildr: FormBuilder, 
      private crudPortonesService: crudPortonesService,
      private toastr: ToastrService,
+     private router: Router
      ) {
 
   }
@@ -91,8 +95,7 @@ updatePorton() {
 
   this.crudPortonesService.getUpdatePortones(PortonID,this.condominio_ID, Descripcion).subscribe(response => {
     console.log(response);
-    
-     this.toastr.success('porton  Actualizado');
+    this.toastr.success('porton  Actualizado');
      //this.crudPortonesService.getUpdatePortones(condominio_ID); // call listarPortones after successful update
   }, error => {
     console.log(error);

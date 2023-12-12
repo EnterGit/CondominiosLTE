@@ -105,14 +105,9 @@ registerLocaleData(localeEn, 'en-EN');
         CrudPropiedadComponent,
         CrudVehiculoComponent,
         CrudVisitasComponent,
-<<<<<<< HEAD
         CrudZonasComponent,
         ShowforrolesDirective,
         CrudCondominiosComponent
-=======
-         CrudZonasComponent,
-        ShowforrolesDirective
->>>>>>> b8cfe2eefdf1ad96222dbb34b03b0a61236634e1
     ],
     imports: [
         MatCardModule,

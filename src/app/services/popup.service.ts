@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AppService } from './app.service';
 import { MatDialog } from '@angular/material/dialog';
-
+import { UpdatePageService } from './update-page.service';
 @Injectable({
   providedIn: 'root'
 })
 export class PopupService {
 
-  constructor(private appService: AppService, private dialog: MatDialog) { }
+  constructor(private appService: AppService, 
+    private dialog: MatDialog,
+    private updatePageService: UpdatePageService) { }
 
   openPopup(component: any, role: string, titulo: string, valor:any) {
     const user = this.appService.obtenerProfile();
@@ -24,6 +26,8 @@ export class PopupService {
   
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
+        this.updatePageService.updatePage();
+        
       });
     } else {
       // No abre el popup y posiblemente muestra un mensaje de error

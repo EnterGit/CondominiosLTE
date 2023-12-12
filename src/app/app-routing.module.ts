@@ -61,9 +61,7 @@ const routes: Routes = [
             },
             {
                 path: 'portones',
-                component: PortonesComponent,
-                canActivate: [AuthmenuGuard],
-                data: { role: 'admin1' }
+                component: PortonesComponent
             },
             {
                 path: 'configuraciones',

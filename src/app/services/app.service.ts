@@ -46,7 +46,6 @@ export class AppService {
 
 
     getLogin(correo: string, password: string): Observable<any> {
-
         return this.http
         .post('http://localhost:3000/users/login', {
             correo,
@@ -145,9 +144,11 @@ export class AppService {
     }
 
     obtenerProfile() {
-        const token = localStorage.getItem('ACCESO');
+        const token = localStorage.getItem('token');
         const decode = jwtDecode<TokenPayload>(token);
         console.log('DECODE', decode);
+        const currentPage = this.router.url;
+        console.log('La página actual es', currentPage);
         return decode;
     }
 

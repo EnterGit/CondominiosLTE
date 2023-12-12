@@ -5,6 +5,9 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Lista de Condominios</h3>
+                <mat-card-header>
+                  <button style="margin-left: 80%;" *appShowforroles="['admin']" (click)="Openpopup()" mat-raised-button color="primary">Nuevo Condominio (+)</button>
+              </mat-card-header>
             </div>
             <div class="card-body">
                 <div class="container-fluid">
@@ -15,7 +18,9 @@
                             <tr>
                               <th>Nombre</th>
                               <th>Dirección</th>
-                              <th>Número de Dirección</th>
+                              <th>Número</th>
+                              <th>Comuna</th>
+                              <th>Región</th>
                               <th>Acciones</th>
                             </tr>
                           </thead>
@@ -24,8 +29,13 @@
                               <td>{{ condominio.Nombre }}</td>
                               <td>{{ condominio.Direccion }}</td>
                               <td>{{ condominio.NumeroDireccion }}</td>
+                              <td>{{ condominio.Comuna }}</td>
+                              <td>{{ condominio.Region }}</td>
                               <td>
-                                <button class="btn btn-primary" (click)="editarCondominio(condominio)">Editar</button>
+                                <button class="btn btn-primary" (click)="editarCondominio(condominio.CondominioID)">Editar</button>
+                                <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon">
+                                  <mat-icon>delete</mat-icon>
+                                </button>
                                 <button class="btn btn-danger" (click)="eliminarCondominio(condominio)">Eliminar</button>
                               </td>
                             </tr>

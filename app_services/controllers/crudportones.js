@@ -84,6 +84,20 @@ exports.listByCondominioID = async (req, res) => {
 };
 
 
+exports.list = async (req, res) => {
+    try {
+        const [rows] = await db.execute(`
+            SELECT portones.*, condominios.nombre AS Nombre
+            FROM portones 
+            INNER JOIN condominios ON portones.CondominioID = condominios.CondominioID
+        `);
+        res.status(200).send(rows);
+    } catch (error) {
+        console.error('Error: ', error);
+        res.status(500).send({ message: 'No fue posible obtener la lista de portones', error: error });
+    }
+};
+
 
 //get Portones by portonID
 exports.getByCode = async (req, res) => {

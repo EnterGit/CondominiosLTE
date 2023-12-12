@@ -1,19 +1,27 @@
-<form [formGroup]="myform" (ngSubmit)="SavePorton()">
+<form [formGroup]="portonForm" (ngSubmit)="addPorton(portonForm.value)">
     
     <h1 mat-dialog-title>{{inputdata.title}}</h1>
+
     <div mat-dialog-content>
-        <mat-form-field>
-            <mat-label>PortonID</mat-label>
-            <input formControlName="PortonID" matInput>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Nombre</mat-label>
-            <input formControlName="Nombre" matInput>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>descripcion</mat-label>
-            <input formControlName="descripcion" matInput>
-        </mat-form-field>
+
+    <mat-form-field *ngIf="!hidePortonID">
+        <mat-label>PortonID</mat-label>
+        <input formControlName="PortonID" matInput>         
+    </mat-form-field>
+        
+<mat-form-field>
+    <mat-label>Seleccione Condominio</mat-label>
+    <mat-select [(value)]="selectedId">
+        <mat-option *ngFor="let condominio of condominios" [value]="condominio.CondominioID">{{condominio.Nombre}}</mat-option>
+    </mat-select>
+</mat-form-field>
+
+
+<mat-form-field>
+    <mat-label>Descripcion</mat-label>
+    <input matInput formControlName="Descripcion" required>
+</mat-form-field>
+
     </div>
 <div mat-dialog-actions>
     <button mat-raised-button type="submit" color="primary" *ngIf="!showUpdateButton">Guardar</button> <!-- modify this line -->

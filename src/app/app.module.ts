@@ -39,6 +39,8 @@ import { CondominiosComponent } from './pages/condominios/condominios.component'
 //Material
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+
 
 
 
@@ -106,6 +108,7 @@ registerLocaleData(localeEn, 'en-EN');
     ],
     imports: [
         MatCardModule,
+        MatSelectModule,
         MatFormFieldModule,
         MatButtonModule,
         MatDialogModule,

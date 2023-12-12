@@ -53,7 +53,7 @@ export class AppService {
         })
         .pipe(
             map((resp: any) => {
-            console.log(' RESP ', resp); // AQUI SE DEBE AGREAR EL TOKEN AL LOCALSTORAGE Y LUEGO REDIRECCIONAR
+            //console.log(' RESP ', resp); // AQUI SE DEBE AGREAR EL TOKEN AL LOCALSTORAGE Y LUEGO REDIRECCIONAR
             this.setToken(resp);          
             //redireccionar a la pagina de inicio
             //this.router.navigate(['newletter']);
@@ -135,7 +135,7 @@ export class AppService {
 
     async getProfile() {
         try {
-            console.log("ROLE" + localStorage.getItem('ROLE'));
+            //console.log("ROLE" + localStorage.getItem('ROLE'));
             this.user = this.obtenerProfile(); //localStorage.getItem('ROLE');  //await Gatekeeper.getProfile();
         } catch (error) {
             this.logout();
@@ -146,9 +146,9 @@ export class AppService {
     obtenerProfile() {
         const token = localStorage.getItem('token');
         const decode = jwtDecode<TokenPayload>(token);
-        console.log('DECODE', decode);
+        //console.log('DECODE', decode);
         const currentPage = this.router.url;
-        console.log('La página actual es', currentPage);
+        //console.log('La página actual es', currentPage);
         return decode;
     }
 

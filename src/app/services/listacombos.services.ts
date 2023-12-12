@@ -18,7 +18,6 @@ export class ListacombosService {
     }
 
 
-
     getComunas(idRegion: number): Observable<any> {
         return this.http.get(`${this.apiUrl}/comunas/${idRegion}`);
     }

@@ -14,21 +14,22 @@ connect().then((connection) => {
 
 
 // Create
-//router.post('/add', (req, res) => {
 exports.add = (req, res) => {
     let data = {
-        Nombre: req.body.Nombre,
-        Direccion: req.body.Direccion,
-        NumeroDireccion: req.body.NumeroDireccion,
-        CodigoPostal: req.body.CodigoPostal,
-        Pais: req.body.Pais,
-        Region: req.body.Region,
-        Comuna: req.body.Comuna,
-        Estado: req.body.Estado
+        Nombre: req.body.NombreCondominio,
+        Direccion: req.body.DireccionCondominio,
+        NumeroDireccion: req.body.NumeroCondominio,
+       // CodigoPostal: req.body.CodigoPostal,        
+        Region: req.body.RegionCondominio,
+        Comuna: req.body.ComunaCondominio,
+        // IdCondominio: req.body.IdCondominio
+        // Estado: req.body.Estado
     };
-    let sql = "INSERT INTO condominios SET Nombre = ?, Direccion = ?, NumeroDireccion = ?, CodigoPostal = ?, Pais = ?, Region = ?, Comuna = ?, Estado = ?";
-    
-    db.execute(sql, [data.Nombre, data.Direccion, data.NumeroDireccion, data.CodigoPostal, data.Pais, data.Region, data.Comuna, data.Estado])
+    // let sql = "INSERT INTO condominios SET Nombre = ?, Direccion = ?, NumeroDireccion = ?, CodigoPostal = ?, Pais = ?, Region = ?, Comuna = ?, Estado = ?";
+    //db.execute(sql, [data.Nombre, data.Direccion, data.NumeroDireccion, data.CodigoPostal, data.Pais, data.Region, data.Comuna, data.Estado])
+    let sql = "INSERT INTO condominios SET Nombre = ?, Direccion = ?, NumeroDireccion = ?, Region = ?, Comuna = ? ";
+
+    db.execute(sql, [data.Nombre, data.Direccion, data.NumeroDireccion, data.Region, data.Comuna])
     .then(([results]) => {
         res.send({ message: 'Ingreso satisfactorio', data: results });
     })
@@ -39,14 +40,14 @@ exports.add = (req, res) => {
 };
 
 
-
 // Read
 // Get all condominios from db
 //router.get('/leer', (req, res) => {
 exports.leer = (req, res) => {
-    db.execute("SELECT * FROM condominios")
-        .then(([results]) => {
+    db.execute("SELECT * FROM condominios INNER JOIN tregion ON condominios.Region = tregion.REGION_ID INNER JOIN tcomuna ON condominios.Comuna = tcomuna.COMUNA_ID order by condominios.CondominioID")
+            .then(([results]) => {
             res.send(results);
+            console.log(results);
         })
         .catch((error) => {
             console.error('Error: ', error);
@@ -56,29 +57,49 @@ exports.leer = (req, res) => {
 
 
 // Update
-router.put('/update/:id', (req, res) => {
-    let data = req.body;
-    db.execute("UPDATE condominios SET ? WHERE CondominioID = ?", [data, req.params.id])
-        .then(([results]) => {
-            res.send(results);
-        })
-        .catch((error) => {
-            console.error('Error: ', error);
-            res.status(500).send('Server error');
-        });
-});
+exports.update = async (req, res) => {
+    console.log('req.body: ', req.body);
+    let data = {
+        Nombre: req.body.NombreCondominio,
+        Direccion: req.body.DireccionCondominio,
+        NumeroDireccion: req.body.NumeroCondominio,
+        Region: req.body.RegionCondominio,
+        Comuna: req.body.ComunaCondominio,
+        IdCondominio: req.body.IdCondominio
+        // Estado: req.body.Estado
+    };
+    
+    let sql = "UPDATE condominios SET Nombre = ?, Direccion = ?, NumeroDireccion = ?, Region = ?, Comuna = ? WHERE CondominioID = ?";
+    try {
+        const [result] = await db.execute(sql, [data.Nombre, data.Direccion, data.NumeroDireccion, data.Region, data.Comuna, data.IdCondominio]);
+        if (result.affectedRows > 0) {
+            res.status(200).send({ message: 'Condominio actualizado' });
+        } else {
+            res.status(404).send({ message: 'Condominio no encontrado' });
+        }
+    } catch (error) {
+        console.error('Error: ', error);
+        res.status(500).send({ message: 'Condominio no fue actualizado', error: error });
+    }
+};
 
-// Delete
-router.delete('/delete/:id', (req, res) => {
-    db.execute("DELETE FROM condominios WHERE CondominioID = ?", [req.params.id])
-        .then(([results]) => {
-            res.send(results);
-        })
-        .catch((error) => {
-            console.error('Error: ', error);
-            res.status(500).send('Server error');
-        });
-});
+
+// delete a condominio
+exports.delete = async (req, res) => {
+    const CondominioID = req.params.id;
+    try {
+        const [result] = await db.execute("DELETE FROM condominios WHERE CondominioID = ?", [CondominioID]);
+        if (result.affectedRows > 0) {
+            res.status(200).send({ message: 'Condominio eliminado' });
+        } else {
+            res.status(404).send({ message: 'Condominio no encontrado' });
+        }
+    } catch (error) {
+        console.error('Error: ', error);
+        res.status(500).send({ message: 'Condominio no fue eliminado', error: error });
+    }
+};
+
 
 
 // Get a single condominio from db

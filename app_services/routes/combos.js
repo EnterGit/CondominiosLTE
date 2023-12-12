@@ -4,6 +4,6 @@ const ComboController = require('../controllers/combos');
 
 
 router.get('/regiones', ComboController.listarRegiones);
-router.get('/comunas', ComboController.listarComunas);
+router.get('/comunas/:id', ComboController.listarComunas);
 
 module.exports = router;

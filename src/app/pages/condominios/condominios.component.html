@@ -19,8 +19,8 @@
                               <th>Nombre</th>
                               <th>Dirección</th>
                               <th>Número</th>
-                              <th>Comuna</th>
                               <th>Región</th>
+                              <th>Comuna</th>
                               <th>Acciones</th>
                             </tr>
                           </thead>
@@ -29,18 +29,21 @@
                               <td>{{ condominio.Nombre }}</td>
                               <td>{{ condominio.Direccion }}</td>
                               <td>{{ condominio.NumeroDireccion }}</td>
-                              <td>{{ condominio.Comuna }}</td>
-                              <td>{{ condominio.Region }}</td>
+                              <td>{{ condominio.REGION_NOMBRE }}</td>
+                              <td>{{ condominio.COMUNA_NOMBRE }}</td>                              
                               <td>
                                 <button class="btn btn-primary" (click)="editarCondominio(condominio.CondominioID)">Editar</button>
-                                <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon">
+                                <!-- <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon">
                                   <mat-icon>delete</mat-icon>
-                                </button>
+                                </button> -->
                                 <button class="btn btn-danger" (click)="eliminarCondominio(condominio)">Eliminar</button>
                               </td>
                             </tr>
                           </tbody>
                         </table>
+
+                        <mat-paginator [length]="allCondominios.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" (page)="onPageChange($event)"></mat-paginator>
+
                       </div>
                     </div>
                   </div>

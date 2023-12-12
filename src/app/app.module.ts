@@ -39,8 +39,9 @@ import { CondominiosComponent } from './pages/condominios/condominios.component'
 //Material
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatIconModule} from '@angular/material/icon';
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 //paginas
 import { CrudPortonesComponent } from '../app/pages/crud-portones/crud-portones.component';
@@ -61,6 +62,7 @@ import { CrudVisitasComponent } from './pages/popup/crud-visitas/crud-visitas.co
 import { CrudZonasComponent } from './pages/popup/crud-zonas/crud-zonas.component';
 import { MatInputModule } from '@angular/material/input';
 import { ShowforrolesDirective } from './guards/directives/showforroles.directive';
+import { CrudCondominiosComponent } from './pages/popup/crud-condominios/crud-condominios.component';
 
 
 
@@ -104,7 +106,8 @@ registerLocaleData(localeEn, 'en-EN');
         CrudVehiculoComponent,
         CrudVisitasComponent,
         CrudZonasComponent,
-        ShowforrolesDirective
+        ShowforrolesDirective,
+        CrudCondominiosComponent
     ],
     imports: [
         MatCardModule,
@@ -113,6 +116,8 @@ registerLocaleData(localeEn, 'en-EN');
         MatDialogModule,
         MatInputModule,
         MatIconModule,
+        MatSelectModule,
+        MatPaginatorModule,
         ProfabricComponentsModule,
         CommonModule,
         BrowserModule,

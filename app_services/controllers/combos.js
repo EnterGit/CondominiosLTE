@@ -27,15 +27,29 @@ exports.listarRegiones = (req, res) => {
 
 
 //crea un metodo para listar las comunas según el id de region
-exports.listarComunas = (req, res) => {
-    console.log(req.params.id);
-    db.execute("SELECT * FROM tcomuna WHERE REGION_ID = ?", [req.params.id])
-        .then(([results]) => {
-            res.send(results);
-        })
-        .catch((error) => {
-            console.error('Error: ', error);
-            res.status(500).send('Server error');
-        });
+// exports.listarComunas = (req, res) => {
+//     console.log(req.params.id);
+//     db.execute("SELECT * FROM tcomuna WHERE REGION_ID = ?", [req.params.id])
+//         .then(([results]) => {
+//             res.send(results);
+//         })
+//         .catch((error) => {
+//             console.error('Error: ', error);
+//             res.status(500).send('Server error');
+//         });
+// };
+
+// listar comuna segun id
+exports.listarComunas = async (req, res) => {
+    const regionID = req.params.id;
+    console.log(regionID);
+    try {
+        const [rows] = await db.execute("SELECT * FROM tcomuna WHERE REGION_ID = ?", [regionID]);
+        res.status(200).send(rows);
+    } catch (error) {
+        console.log(`Error al recuperar datos: ${error}`);
+        res.status(500).send({ message: 'No fue posible recuperar los datos', error: error });
+    }
 };
+
 

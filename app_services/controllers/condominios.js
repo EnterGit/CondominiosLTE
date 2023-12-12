@@ -81,4 +81,17 @@ router.delete('/delete/:id', (req, res) => {
 });
 
 
+// Get a single condominio from db
+exports.showByCondominioID = async (req, res) => {
+    const CondominioID = req.params.id;
+    try {
+        const [rows] = await db.execute("SELECT * FROM condominios WHERE CondominioID = ?", [CondominioID]);
+        res.status(200).send(rows);
+    } catch (error) {
+        console.log(`Error al recuperar datos: ${error}`);
+        res.status(500).send({ message: 'No fue posible recuperar los datos', error: error });
+    }
+};
+
+
 //module.exports = router;

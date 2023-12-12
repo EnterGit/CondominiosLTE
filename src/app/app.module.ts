@@ -105,8 +105,8 @@ registerLocaleData(localeEn, 'en-EN');
         CrudEstacionamientosComponent,
         CrudPropiedadComponent,
         CrudVehiculoComponent,
-        CrudVisitasComporesolved changesnent,
-        CrudZonasComponent,
+        CrudVisitasComponent,
+         CrudZonasComponent,
         ShowforrolesDirective
     ],
     imports: [

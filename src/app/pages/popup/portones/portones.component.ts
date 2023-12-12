@@ -28,7 +28,7 @@ export class PortonesComponent implements OnInit {
   selectedId:any;
   condominios: any[] = [];
   hidePortonID = false;
-  portonForm = new FormControl('');
+ 
 
   
 
@@ -100,7 +100,7 @@ showUpdateButton = false; // add this line to your component properties
 addPorton(portonData: any): void {
   console.log("desde el popup:" + portonData);
 //portonData.Descripcion
-  this.crudPortonesService.postAddPortones(this.selectedId, "prueba").subscribe(
+  this.crudPortonesService.postAddPortones(this.selectedId, portonData.Descripcion).subscribe(
     response => {
       this.toastr.success('porton  Ingresado');
       // You can add code here to handle the response, like updating the UI
@@ -126,23 +126,24 @@ loadUpdate(code: any) {
     this.condominio_ID = item.CondominioID;
     this.selectedId = this.condominio_ID;
 
-
+console.log("PortonID:" + PortonID);
 
     this.hidePortonID = false;
-    this.myform.get('PortonID').setValue(PortonID);
-    this.myform.get('PortonID').enable(); 
 
-    let descripcion: string;
-   descripcion = item.Descripcion as string;
+//    this.portonForm.get('PortonID').value(PortonID);
+  //  this.portonForm.get('PortonID').disable(); 
 
-    let Descripcion = this.myform.get('descripcion').value.toString(); // O .toString() u otro método adecuado si el valor no es una cadena
+    //let descripcion: string;
+   //descripcion = item.Descripcion as string;
+
+    //let Descripcion = this.portonForm.get('descripcion').value.toString(); // O .toString() u otro método adecuado si el valor no es una cadena
     //this.myform.get('Descripcion').setValue(Descripcion);
 
     this.Listarcondominios();
 
     this.myform.patchValue({
-      PortonID: PortonID,
-      descripcion: descripcion
+      PortonID: item.PortonID,
+      Descripcion: item.Descripcion,
     });
 
   
@@ -201,7 +202,7 @@ listarPortones(CondominioID: string,) {
   myform = this.buildr.group({
     PortonID: this.buildr.control(''),
     Nombre: this.buildr.control(''),
-    descripcion: this.buildr.control('aaaaaaa')
+    Descripcion: this.buildr.control('')
 
   
     

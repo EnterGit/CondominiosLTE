@@ -63,7 +63,7 @@ export class CondominiosComponent implements OnInit{
 
    eliminarCondominio(condominio : string){
     console.log("eliminarCondominio" + condominio);
-         this.popupService.openPopupDelete(CrudCondominiosComponent, 'admin', 'Eliminar Condominio', condominio);
+         this.popupService.openPopupDelete(CrudCondominiosComponent, 'admin', 'Eliminar Condominio', condominio, "Condominio");
    };
 
    Openpopup(){

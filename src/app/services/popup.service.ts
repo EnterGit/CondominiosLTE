@@ -35,7 +35,7 @@ export class PopupService {
     }
   }
 
-  openPopupDelete(component: any, role: string, titulo: string, valor:any) {
+  openPopupDelete(component: any, role: string, titulo: string, valor:any, mensaje: string) {
     const user = this.appService.obtenerProfile();
     if (user && user.ROLE === role) {
       // Abre el popup
@@ -44,7 +44,7 @@ export class PopupService {
         height: '150px',
         data: { 
           title : titulo,
-          message: '¿Estás seguro de que quieres eliminar este condominio?',          
+          message: '¿Estás seguro de que quieres eliminar este ' + mensaje + '?',          
           code : valor
         } 
       });

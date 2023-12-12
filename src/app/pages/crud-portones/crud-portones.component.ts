@@ -11,7 +11,9 @@ import { MatInputModule } from '@angular/material/input';
 import{MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { PopupService } from '@services/popup.service';
-import { UpdatePageService } from '@services/update-page.service';
+
+
+import {ToastrService} from 'ngx-toastr';
 @Component({
   selector: 'app-crud-portones',
   templateUrl: './crud-portones.component.html',
@@ -23,59 +25,20 @@ export class CrudPortonesComponent implements OnInit {
   comunasModel: any[] = [];
   portones: any[] = []; // Asegúrate de que portones esté inicializado
 
-  postulanteModel = {
-    rut: ''
-  };
-
   formPortones!: FormGroup;
   titulo = 'Gestión Portones';
   imagen: any;
-  //private fb: FormBuilder;
-  //mensajeError: string;
   loading = false;
   maxDate = new Date;
   condominioID: string = '1';
   Portones:  any[]=[]; // Asegúrate de que Portones esté inicializado
 
-
-  constructor
-  (
-    private crudPortonesService: crudPortonesService,
-    private dialog: MatDialog,
-    private popupService: PopupService,
-    private updatePageService: UpdatePageService
-    //declara variable condominioID.
-  
-    
-    //private http: HttpClient,
-    //private ruta: ActivatedRoute,
-    //private router: Router,
-    //private fb: FormBuilder,
-    //private regionService: LisregionesService,
-    //private rutService: RutService,
-    //private encriptar: EncriptarService,
-    //private postulanteService: PostulantesService,
-    //private snackBar: MatSnackBar,
-    //private datePipe: DatePipe
+  constructor ( private crudPortonesService: crudPortonesService, private dialog: MatDialog, private popupService: PopupService, private toastr: ToastrService,)
+   { }
 
 
-    ) { 
-
-      this.titulo = "Formulario de Registro Postulante";
-      this.imagen = "https://media.istockphoto.com/vectors/online-registration-form-vector-id1199278357";
-      
-      this.updatePageService.updatePageObservable.subscribe(() => {
-        this.listarPortones('1');
-      });
-
-    }
-
-
-
-    
-ngOnInit(): void {
-  this.listarPortones('1');
-  }    
+//Carga Grilla   
+ngOnInit(): void {  this.listarPortones();}    
 
 
   onSubmit() {
@@ -84,18 +47,27 @@ ngOnInit(): void {
 
 
   //listar portones
-listarPortones(CondominioID: string,) {
-  console.log('listarPortones fue llamado con:' + CondominioID); // Agrega esto
-  this.crudPortonesService.getlistPortones(CondominioID).subscribe({
+listarPortones() { 
+  this.crudPortonesService.getlist().subscribe({
     next: (portones) => {
-      console.log('getlistPortones respondió con', portones); // Agrega esto
-      this.portones = portones; // Modificado a 'portones' para coincidir con la plantilla
+          this.portones = portones; 
     },
     error: (error) => {
       console.log('Hubo un error al obtener los portones', error);
     }
   });
 }
+
+//Agregar Nuevo Porton
+add(){
+      this.popupService.openPopup(PortonesComponent, 'admin', 'Crear Nuevo Porton', "");
+    }
+
+
+
+
+
+
 
 editarPorton(PortonID: string, CondominioID: string, Descripcion: string) {
   console.log('updatePorton fue llamado con', PortonID, CondominioID, Descripcion); // Agrega esto
@@ -104,7 +76,7 @@ editarPorton(PortonID: string, CondominioID: string, Descripcion: string) {
     next: (response) => {
       console.log('getUpdatePortones respondió con', response); // Agrega esto
       // Aquí puedes agregar código para manejar la respuesta, por ejemplo, puedes llamar a listarPortones para actualizar la lista
-      this.listarPortones(CondominioID);
+      this.listarPortones();
     },
     error: (error) => {
       console.log('Hubo un error al actualizar el porton', error);
@@ -112,32 +84,24 @@ editarPorton(PortonID: string, CondominioID: string, Descripcion: string) {
   });
 }
 
-addPorton(CondominioID: string, Descripcion: string) {
-  console.log('addPorton fue llamado con', CondominioID, Descripcion); // Agrega esto
-  this.crudPortonesService.getAddPortones(CondominioID, Descripcion).subscribe({
-    next: (response) => {
-      console.log('getAddPortones respondió con', response); // Agrega esto
-      // Aquí puedes agregar código para manejar la respuesta, por ejemplo, puedes llamar a listarPortones para actualizar la lista
-      this.listarPortones(CondominioID);
-    },
-    error: (error) => {
-      console.log('Hubo un error al agregar el porton', error);
-    }
-  });
-}
+
 
 deletePorton(PortonID: string) {
-  console.log('deletePorton fue llamado con', PortonID); // Agrega esto
-  this.crudPortonesService.getDeletePortones(PortonID).subscribe({
-    next: (response) => {
-      console.log('getDeletePortones respondió con', response); // Agrega esto
-      // Aquí puedes agregar código para manejar la respuesta, por ejemplo, puedes llamar a listarPortones para actualizar la lista
-     // this.listarPortones();
-    },
-    error: (error) => {
-      console.log('Hubo un error al eliminar el porton', error);
-    }
-  });
+  const confirmDelete = window.confirm('¿Desea Eliminar Porton?');
+  if (confirmDelete) {
+    this.crudPortonesService.getDeletePortones(PortonID).subscribe(
+      response => {
+        console.log(response);
+          this.toastr.success('porton  Eliminado');
+        this.listarPortones(); // refresh the list after successful delete
+      },
+      error => {
+        console.error(error);
+
+        this.toastr.error('porton no  Eliminado');
+      }
+    );
+  }
 }
 
 Openpopup() {
@@ -157,8 +121,7 @@ Openpopup() {
   //   }
   //   );
 
-  this.popupService.openPopup(PortonesComponent, 'admin2', 'Formulario de Registro Portones 2', "");
-
+  this.popupService.openPopup(PortonesComponent, 'admin', 'Formulario de Registro Portones 2', "");
   }
 
   editcustomer(code: any) {

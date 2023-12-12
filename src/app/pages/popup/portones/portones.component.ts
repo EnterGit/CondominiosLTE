@@ -8,7 +8,8 @@ import {ToastrService} from 'ngx-toastr';
 //servicio
 
 import { crudPortonesService } from '../../../services/crudportones.services';
-import { Router } from '@angular/router';
+import { ListarcondominiosService } from '@services/listarcondominios.service';
+
 
 
 @Component({
@@ -20,11 +21,23 @@ export class PortonesComponent implements OnInit {
   inputdata: any;
   editdata: any;
   closemessage = 'closed using directive'
-  
-  @Output() callParentMethod = new EventEmitter<void>();
-  
+  isNewPorton = false;
   private porton_ID: string;
   private condominio_ID: string;
+  selectedCondominios: any;
+  selectedId:any;
+  condominios: any[] = [];
+  hidePortonID = false;
+  portonForm = new FormControl('');
+
+  
+
+  updatePorton2() {
+    // ... tu lógica para actualizar el portón
+
+    // Después de actualizar exitosamente el portón, notificar al servicio
+    this.crudPortonesService.notifyPortonUpdate();
+  }
 
   
 showUpdateButton = false; // add this line to your component properties
@@ -35,53 +48,104 @@ showUpdateButton = false; // add this line to your component properties
      private buildr: FormBuilder, 
      private crudPortonesService: crudPortonesService,
      private toastr: ToastrService,
-     private router: Router
+      private listarcondominiosService: ListarcondominiosService,
      ) {
 
   }
+
+
+  
   ngOnInit(): void {
-    //this.inputdata = this.data;
-    //console.log(this.data);
-
-
+  
     this.inputdata = this.data;
     if(this.inputdata.code>0){
-      this.setpopupdata(this.inputdata.code)
+
+  
+
+      this.loadUpdate(this.inputdata.code)
     }
+    else
+    {      
+      this.hidePortonID = true;
+      this.Listarcondominios();
+    }
+
+  }
+
+  
+
+ 
+
+
+//lista mat-select Condominios
+  Listarcondominios() {
+    this.listarcondominiosService.getCondominios().subscribe({
+      next: (condominios) => {
+        this.condominios = condominios;
+      },
+      error: (error) => {
+        console.log('Hubo un error al obtener los condominios', error);
+      }
+    });
+  }
+
+  selectCondominio(condominioId: any) {
+    this.selectedCondominios = this.condominios.find(condominio => condominio.Id === condominioId);
+    console.log(this.selectedCondominios);
   }
 
 
 
-setpopupdata(code: any) {
-  console.log("desde el popup:" + code);
+//Agrega Nuevo Porton
+addPorton(portonData: any): void {
+  console.log("desde el popup:" + portonData);
+//portonData.Descripcion
+  this.crudPortonesService.postAddPortones(this.selectedId, "prueba").subscribe(
+    response => {
+      this.toastr.success('porton  Ingresado');
+      // You can add code here to handle the response, like updating the UI
+    },
+    error => {
+      this.toastr.error('porton no Ingresado');
+    }
+  );
+}
+ 
+
+
+
+
+//Metodo para cargar los datos del porton a editar, recupera por el id del porton
+loadUpdate(code: any) {
   
-
-
-
-  this.crudPortonesService.getByPortonId(code).subscribe(response => {
+    this.crudPortonesService.getByPortonId(code).subscribe(response => {
     let item = response[0]; // access the first object in the array
     this.editdata = item;
-    console.log("este es el json:" + JSON.stringify(this.editdata)); // convert object to JSON string
-
+  
     let PortonID = item.PortonID;
-    console.log("portonID:" + PortonID);
+    this.condominio_ID = item.CondominioID;
+    this.selectedId = this.condominio_ID;
 
-   this.condominio_ID = item.CondominioID;
 
-    let Nombre = item.Nombre;
-    console.log("Nombre:" + Nombre);
-    let descripcion = item.Descripcion; // note the capital D in Descripcion
-    console.log("descripcion:" + descripcion);
+
+    this.hidePortonID = false;
+    this.myform.get('PortonID').setValue(PortonID);
+    this.myform.get('PortonID').enable(); 
+
+    let descripcion: string;
+   descripcion = item.Descripcion as string;
+
+    let Descripcion = this.myform.get('descripcion').value.toString(); // O .toString() u otro método adecuado si el valor no es una cadena
+    //this.myform.get('Descripcion').setValue(Descripcion);
+
+    this.Listarcondominios();
 
     this.myform.patchValue({
       PortonID: PortonID,
-      
-      Nombre: Nombre,
       descripcion: descripcion
     });
 
-    this.myform.get('PortonID').disable(); // disable the PortonID input field
-    this.myform.get('Nombre').disable(); // disable the Nombre input field
+  
     this.showUpdateButton = true;
   });
 }
@@ -95,13 +159,34 @@ updatePorton() {
 
   this.crudPortonesService.getUpdatePortones(PortonID,this.condominio_ID, Descripcion).subscribe(response => {
     console.log(response);
-    this.toastr.success('porton  Actualizado');
-     //this.crudPortonesService.getUpdatePortones(condominio_ID); // call listarPortones after successful update
+    
+     this.toastr.success('porton  Actualizado');
+       // Llama a listarPortones para actualizar la lista después de la actualización exitosa
+       //this.crudPortonesService.notifyPortonUpdate();
+
+     this.listarPortones('1');
   }, error => {
     console.log(error);
       this.toastr.error('porton no  Actualizado');
   }
   );
+}
+
+
+listarPortones(CondominioID: string,) {
+  console.log('listarPortones fue llamado con:' + CondominioID); // Agrega esto
+  this.crudPortonesService.getlistPortones(CondominioID).subscribe({
+    next: (portones) => {
+      console.log('getlistPortones respondió con', portones); // Agrega esto
+      //this.portones = portones; // Modificado a 'portones' para coincidir con la plantilla
+
+       // Después de actualizar exitosamente el portón, notificar al servicio
+    this.crudPortonesService.notifyPortonUpdate();
+    },
+    error: (error) => {
+      console.log('Hubo un error al obtener los portones', error);
+    }
+  });
 }
  
 
@@ -116,7 +201,7 @@ updatePorton() {
   myform = this.buildr.group({
     PortonID: this.buildr.control(''),
     Nombre: this.buildr.control(''),
-    descripcion: this.buildr.control('')
+    descripcion: this.buildr.control('aaaaaaa')
 
   
     

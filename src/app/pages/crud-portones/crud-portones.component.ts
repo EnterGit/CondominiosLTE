@@ -1,21 +1,27 @@
-import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import { crudPortonesService } from '../../services/crudportones.services';
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { PortonesComponent } from '../popup/portones/portones.component';
+
+
+
+//material
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input';
 import{MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
-
-
-import { UpdatePageService } from '@services/update-page.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { PopupService } from '@services/popup.service';
 
+
+//servicios
+import { crudPortonesService } from '../../services/crudportones.services';
+import { PortonesComponent } from '../popup/portones/portones.component';
+import { PopupService } from '@services/popup.service';
+import { UpdatePageService } from '@services/update-page.service';
 
 
 import {ToastrService} from 'ngx-toastr';
@@ -49,8 +55,7 @@ export class CrudPortonesComponent implements OnInit {
       private dialog: MatDialog,
       private popupService: PopupService,
       private toastr: ToastrService,
-      private updatePageService: UpdatePageService,
-      
+      private updatePageService: UpdatePageService,      
       
        )
    { 
@@ -87,7 +92,7 @@ listarPortones() {
 
 //Agregar Nuevo Porton
 add(){
-      this.popupService.openPopup(PortonesComponent, 'admin', 'Crear Nuevo Porton', "");
+      this.popupService.openPopup(PortonesComponent, 'admin', 'Nuevo Porton', "");
     }
 
 

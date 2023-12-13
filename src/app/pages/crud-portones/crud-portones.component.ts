@@ -4,22 +4,30 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { crudPortonesService } from '../../services/crudportones.services';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PortonesComponent } from '../popup/portones/portones.component';
 import { MatInputModule } from '@angular/material/input';
 import{MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
+
+
+import { UpdatePageService } from '@services/update-page.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PopupService } from '@services/popup.service';
 
 
+
 import {ToastrService} from 'ngx-toastr';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+
 @Component({
   selector: 'app-crud-portones',
   templateUrl: './crud-portones.component.html',
   styleUrls: ['./crud-portones.component.scss']
 })
 export class CrudPortonesComponent implements OnInit {
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
   regionesModel: any[] = [];
   comunasModel: any[] = [];
@@ -31,10 +39,26 @@ export class CrudPortonesComponent implements OnInit {
   loading = false;
   maxDate = new Date;
   condominioID: string = '1';
-  Portones:  any[]=[]; // Asegúrate de que Portones esté inicializado
+  //Portones:  any[]=[]; 
+  allPortones: any[] = [];
 
-  constructor ( private crudPortonesService: crudPortonesService, private dialog: MatDialog, private popupService: PopupService, private toastr: ToastrService,)
-   { }
+
+
+  constructor ( 
+      private crudPortonesService: crudPortonesService,
+      private dialog: MatDialog,
+      private popupService: PopupService,
+      private toastr: ToastrService,
+      private updatePageService: UpdatePageService,
+      
+      
+       )
+   { 
+    this.updatePageService.updatePageObservable.subscribe(() => {
+      this.listarPortones();
+
+   })
+  }
 
 
 //Carga Grilla   
@@ -51,6 +75,9 @@ listarPortones() {
   this.crudPortonesService.getlist().subscribe({
     next: (portones) => {
           this.portones = portones; 
+          this.allPortones = portones;
+          this.onPageChange({ pageIndex: 0, pageSize: 10 } as PageEvent);
+
     },
     error: (error) => {
       console.log('Hubo un error al obtener los portones', error);
@@ -87,7 +114,7 @@ editarPorton(PortonID: string, CondominioID: string, Descripcion: string) {
 
 
 deletePorton(PortonID: string) {
-  const confirmDelete = window.confirm('¿Desea Eliminar Porton?');
+ /* const confirmDelete = window.confirm('¿Desea Eliminar Porton?');
   if (confirmDelete) {
     this.crudPortonesService.getDeletePortones(PortonID).subscribe(
       response => {
@@ -101,7 +128,10 @@ deletePorton(PortonID: string) {
         this.toastr.error('porton no  Eliminado');
       }
     );
-  }
+  }*/
+
+  this.popupService.openPopupDelete(PortonesComponent, 'admin', 'Eliminar Porton', PortonID,"Porton");
+ 
 }
 
 Openpopup() {
@@ -132,5 +162,11 @@ Openpopup() {
 
   }
 
+  onPageChange(event: PageEvent) {
+    const startIndex = event.pageIndex * event.pageSize;
+    const endIndex = startIndex + event.pageSize;
+    this.portones = this.allPortones.slice(startIndex, endIndex);
 
+
+}
 }

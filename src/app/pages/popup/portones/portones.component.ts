@@ -28,7 +28,7 @@ export class PortonesComponent implements OnInit {
   selectedId:any;
   condominios: any[] = [];
   hidePortonID = false;
- 
+  showFormDelete = false;
 
   
 
@@ -49,6 +49,7 @@ showUpdateButton = false; // add this line to your component properties
      private crudPortonesService: crudPortonesService,
      private toastr: ToastrService,
       private listarcondominiosService: ListarcondominiosService,
+      public dialogRef: MatDialogRef<crudPortonesService>,
      ) {
 
   }
@@ -131,7 +132,7 @@ console.log("PortonID:" + PortonID);
     this.hidePortonID = false;
 
 //    this.portonForm.get('PortonID').value(PortonID);
-  //  this.portonForm.get('PortonID').disable(); 
+    this.myform.get('PortonID').disable(); 
 
     //let descripcion: string;
    //descripcion = item.Descripcion as string;
@@ -163,7 +164,7 @@ updatePorton() {
     
      this.toastr.success('porton  Actualizado');
        // Llama a listarPortones para actualizar la lista después de la actualización exitosa
-       //this.crudPortonesService.notifyPortonUpdate();
+       this.crudPortonesService.notifyPortonUpdate();
 
      this.listarPortones('1');
   }, error => {
@@ -190,14 +191,24 @@ listarPortones(CondominioID: string,) {
   });
 }
  
+onConfirm(code: any){
+  console.log("onConfirm ", code.Nombre);
+  this.dialogRef.close();
+  // this.listarcondominiosService.deleteCondominio(code.CondominioID).subscribe(response => {
+  //   this.toastr.success('Condominio Eliminado');
+  //   this.dialogRef.close();
+  // }, error => {
+  //   console.log(error);
+  //     this.toastr.error('Condominio no Eliminado');
+  // });
+}
 
 
 
-
-
-  closepopup() {
-    this.ref.close('Closed using function');
-  }
+closepopup(){
+  console.log("closepopup");
+  this.ref.close('Closed using function');
+}
 
   myform = this.buildr.group({
     PortonID: this.buildr.control(''),

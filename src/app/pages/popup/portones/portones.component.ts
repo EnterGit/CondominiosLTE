@@ -9,7 +9,7 @@ import {ToastrService} from 'ngx-toastr';
 
 import { crudPortonesService } from '../../../services/crudportones.services';
 import { ListarcondominiosService } from '@services/listarcondominios.service';
-
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 
 @Component({

@@ -3,7 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {MainComponent} from '@modules/main/main.component';
 import {BlankComponent} from '@pages/blank/blank.component';
 import {LoginComponent} from '@modules/login/login.component';
-import {ProfileComponent} from '@pages/profile/profile.component';
+
 import {RegisterComponent} from '@modules/register/register.component';
 import {DashboardComponent} from '@pages/dashboard/dashboard.component';
 import {AuthGuard} from '@guards/auth.guard';
@@ -22,7 +22,7 @@ import { EstacionamientosComponent } from '@pages/estacionamientos/estacionamien
 import { VisitasComponent } from '@pages/visitas/visitas.component';
 import { PropiedadComponent } from '@pages/propiedad/propiedad.component';
 import { VehiculosComponent } from '@pages/vehiculos/vehiculos.component';
-import { ZonaComponent } from '@pages/zona/zona.component';
+
 //popup
 import { PortonesComponent } from './pages/popup/portones/portones.component';
 import { CrudZonasComponent } from './pages/popup/crud-zonas/crud-zonas.component';
@@ -39,10 +39,7 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         canActivateChild: [AuthGuard],
         children: [
-            {
-                path: 'profile',
-                component: ProfileComponent
-            },
+          
             {
                 path: 'condominios',
                 component: CondominiosComponent,
@@ -77,7 +74,9 @@ const routes: Routes = [
             },
             {
                 path: 'visitas',
-                component: VisitasComponent
+                component: VisitasComponent,
+                canActivate: [AuthmenuGuard],
+                data: { role: 'admin' }
             },
             {
                 path: 'crud-visitas',
@@ -99,10 +98,7 @@ const routes: Routes = [
                 path: 'crud-vehiculo',
                 component: CrudVehiculoComponent
             },
-            {
-                path: 'zona',
-                component: ZonaComponent
-            },
+         
             {
                 path: 'crud-zonas',
                 component: CrudZonasComponent

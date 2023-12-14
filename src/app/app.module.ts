@@ -11,7 +11,7 @@ import {FooterComponent} from '@modules/main/footer/footer.component';
 import {MenuSidebarComponent} from '@modules/main/menu-sidebar/menu-sidebar.component';
 import {BlankComponent} from '@pages/blank/blank.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {ProfileComponent} from '@pages/profile/profile.component';
+
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RegisterComponent} from '@modules/register/register.component';
 import {DashboardComponent} from '@pages/dashboard/dashboard.component';
@@ -52,7 +52,7 @@ import { ConfiguracionesComponent } from './pages/configuraciones/configuracione
 import { EstacionamientosComponent } from './pages/estacionamientos/estacionamientos.component';
 import { VehiculosComponent } from './pages/vehiculos/vehiculos.component';
 import { VisitasComponent } from './pages/visitas/visitas.component';
-import { ZonaComponent } from './pages/zona/zona.component';
+
 import { PropiedadComponent } from './pages/propiedad/propiedad.component';
 import { CrudConfiguracionesComponent } from './pages/popup/crud-configuraciones/crud-configuraciones.component';
 import { CrudEstacionamientosComponent } from './pages/popup/crud-estacionamientos/crud-estacionamientos.component';
@@ -77,7 +77,6 @@ registerLocaleData(localeEn, 'en-EN');
         FooterComponent,
         MenuSidebarComponent,
         BlankComponent,
-        ProfileComponent,
         RegisterComponent,
         DashboardComponent,
         MessagesComponent,
@@ -98,7 +97,6 @@ registerLocaleData(localeEn, 'en-EN');
         EstacionamientosComponent,
         VehiculosComponent,
         VisitasComponent,
-        ZonaComponent,
         PropiedadComponent,
         CrudConfiguracionesComponent,
         CrudEstacionamientosComponent,

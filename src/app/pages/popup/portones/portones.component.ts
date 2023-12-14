@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
-import { FormBuilder,FormControl } from '@angular/forms';
+import { FormBuilder,FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,7 +9,7 @@ import {ToastrService} from 'ngx-toastr';
 
 import { crudPortonesService } from '../../../services/crudportones.services';
 import { ListarcondominiosService } from '@services/listarcondominios.service';
-
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 
 @Component({
@@ -28,19 +28,18 @@ export class PortonesComponent implements OnInit {
   selectedId:any;
   condominios: any[] = [];
   hidePortonID = false;
- 
+  showFormDelete = false;
+  showUpdateButton = false; 
 
-  
+  myform = this.buildr.group({
+    PortonID: this.buildr.control(''),
+    Nombre: this.buildr.control(''),
+    Descripcion: this.buildr.control('', Validators.required),
+    CondominioID: this.buildr.control('', Validators.required),
+    
 
-  updatePorton2() {
-    // ... tu lógica para actualizar el portón
+  });
 
-    // Después de actualizar exitosamente el portón, notificar al servicio
-    this.crudPortonesService.notifyPortonUpdate();
-  }
-
-  
-showUpdateButton = false; // add this line to your component properties
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -49,32 +48,40 @@ showUpdateButton = false; // add this line to your component properties
      private crudPortonesService: crudPortonesService,
      private toastr: ToastrService,
       private listarcondominiosService: ListarcondominiosService,
+      public dialogRef: MatDialogRef<crudPortonesService>,
      ) {
 
   }
 
 
-  
   ngOnInit(): void {
   
     this.inputdata = this.data;
-    if(this.inputdata.code>0){
-
-  
-
-      this.loadUpdate(this.inputdata.code)
+    
+    if(this.inputdata.title == "Nuevo Porton"){  
+      this.hidePortonID = true;
+      this.Listarcondominios();      
     }
     else
-    {      
-      this.hidePortonID = true;
-      this.Listarcondominios();
+    {     
+      if (this.inputdata.title == "Eliminar Porton")
+      {
+        this.showFormDelete = true;        
+      }
+      else
+      {
+        if(this.inputdata.code > 0)
+        {
+          this.loadUpdate(this.inputdata.code)
+        }
+      }
+
+     
     }
 
   }
 
   
-
- 
 
 
 //lista mat-select Condominios
@@ -98,12 +105,15 @@ showUpdateButton = false; // add this line to your component properties
 
 //Agrega Nuevo Porton
 addPorton(portonData: any): void {
+  const formData = this.myform.value
+
   console.log("desde el popup:" + portonData);
 //portonData.Descripcion
   this.crudPortonesService.postAddPortones(this.selectedId, portonData.Descripcion).subscribe(
     response => {
       this.toastr.success('porton  Ingresado');
-      // You can add code here to handle the response, like updating the UI
+      this.dialogRef.close();
+      this.crudPortonesService.notifyPortonUpdate();
     },
     error => {
       this.toastr.error('porton no Ingresado');
@@ -131,7 +141,7 @@ console.log("PortonID:" + PortonID);
     this.hidePortonID = false;
 
 //    this.portonForm.get('PortonID').value(PortonID);
-  //  this.portonForm.get('PortonID').disable(); 
+    this.myform.get('PortonID').disable(); 
 
     //let descripcion: string;
    //descripcion = item.Descripcion as string;
@@ -155,7 +165,6 @@ console.log("PortonID:" + PortonID);
 updatePorton() {
   //let PortonID = this.myform.get('PortonID').value; // get the PortonID from the form
   let PortonID = this.myform.get('PortonID').value;
-  console.log("PortonID:" + PortonID);
   let Descripcion = this.myform.get('descripcion').value;
 
   this.crudPortonesService.getUpdatePortones(PortonID,this.condominio_ID, Descripcion).subscribe(response => {
@@ -163,7 +172,8 @@ updatePorton() {
     
      this.toastr.success('porton  Actualizado');
        // Llama a listarPortones para actualizar la lista después de la actualización exitosa
-       //this.crudPortonesService.notifyPortonUpdate();
+       this.crudPortonesService.notifyPortonUpdate();
+       this.dialogRef.close();
 
      this.listarPortones('1');
   }, error => {
@@ -190,24 +200,19 @@ listarPortones(CondominioID: string,) {
   });
 }
  
+onConfirm(code: any){
+  console.log("onConfirm ", code.Nombre);
+  this.dialogRef.close();
+ 
+}
 
 
 
+closepopup(){
+  console.log("closepopup");
+  this.ref.close('Closed using function');
+}
 
-
-  closepopup() {
-    this.ref.close('Closed using function');
-  }
-
-  myform = this.buildr.group({
-    PortonID: this.buildr.control(''),
-    Nombre: this.buildr.control(''),
-    Descripcion: this.buildr.control('')
-
-  
-    
-
-  });
 
 
  

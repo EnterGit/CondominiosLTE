@@ -85,11 +85,15 @@ const routes: Routes = [
             },
             {
                 path: 'propiedad',
-                component: PropiedadComponent
+                component: PropiedadComponent,
+                canActivate: [AuthmenuGuard],
+                data: { role: 'admin' }
             },
             {
                 path: 'crud-propiedad',
-                component: CrudPropiedadComponent
+                component: CrudPropiedadComponent,
+                canActivate: [AuthmenuGuard],
+                data: { role: 'admin' }
             },
             {
                 path: 'vehiculos',

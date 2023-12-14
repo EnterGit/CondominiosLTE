@@ -1,1 +1,57 @@
-<p>propiedad works!</p>
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Lista de Condominios</h3>
+                <mat-card-header>
+                  <button style="margin-left: 80%;" *appShowforroles="['admin']" (click)="Openpopup()" mat-raised-button color="primary">Nueva Propiedad (+)</button>
+              </mat-card-header>
+            </div>
+            <div class="card-body">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                      <div class="col-lg-12 col-sm-3">
+                        <table class="table table-striped table-bordered table-hover">
+                          <thead class="thead-dark">
+                            <tr>
+                              <th>Condominio</th>
+                              <th>Dirección Propiedad</th>
+                              <th>Piso</th>
+                              <th>Numero Depto</th>
+                              <th>Tipo</th>
+                              <th>Acciones</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let propiedad of propiedades">
+                              <td>{{ propiedad.Nombre }}</td>
+                              <td>{{ propiedad.DireccionPropiedad }}</td>
+                              <td>{{ propiedad.NumeroDireccion }}</td>
+                              <td>{{ propiedad.Piso }}</td>
+                              <td>{{ propiedad.Tipo }}</td>                              
+                              <td>
+                                <button class="btn btn-primary" (click)="editarCondominio(propiedad.CondominioID)">Editar</button>
+                                <!-- <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon">
+                                  <mat-icon>delete</mat-icon>
+                                </button> -->
+                                <button class="btn btn-danger" (click)="eliminarCondominio(propiedad)">Eliminar</button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                        <mat-paginator [length]="allCondominios.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" (page)="onPageChange($event)"></mat-paginator>
+
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">Footer</div>
+            <!-- /.card-footer-->
+        </div>
+    </div>
+    <!-- /.card -->
+</section>

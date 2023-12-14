@@ -107,7 +107,8 @@ registerLocaleData(localeEn, 'en-EN');
         CrudVisitasComponent,
         CrudZonasComponent,
         ShowforrolesDirective,
-        CrudCondominiosComponent
+        CrudCondominiosComponent,
+        
     ],
     imports: [
         MatCardModule,

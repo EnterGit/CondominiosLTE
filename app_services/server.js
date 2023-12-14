@@ -20,6 +20,7 @@ const crudestacionamientoRouter = require('./routes/crudestacionamientos');
 const crudvehiculosRouter = require('./routes/crudvehiculos');
 const crudvisitasRouter = require('./routes/crudvisitas');
 const crudzonacoberturaRouter = require('./routes/crudzonacobertura');
+const propiedadRouter = require('./routes/propiedad');
 
 
 
@@ -35,7 +36,7 @@ app.use('/estacionamientos', crudestacionamientoRouter);
 app.use('/vehiculos', crudvehiculosRouter);
 app.use('/visitas', crudvisitasRouter);
 app.use('/zonacobertura', crudzonacoberturaRouter);
-
+app.use('/propiedad', propiedadRouter);
 
 
 

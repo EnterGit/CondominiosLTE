@@ -72,6 +72,12 @@ export const MENU = [
         roles: ['admin', 'user']
     },
     {
+        name:'Visitas',
+        iconClasses: 'fas fa-door-open',
+        path: ['/visitas'],
+        roles: ['admin', 'user']
+    },
+    {
         name: 'Main Menu',
         iconClasses: 'fas fa-folder',
         roles: ['admin', 'user'],        

@@ -42,7 +42,9 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
-/app_services/database/*
+
+
 # System Files
 .DS_Store
 Thumbs.db
+/app_services/database/*

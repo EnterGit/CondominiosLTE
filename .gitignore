@@ -47,4 +47,5 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-/app_services/database/*
+/app_services/database/database.js
+/app_services/database/database2.js

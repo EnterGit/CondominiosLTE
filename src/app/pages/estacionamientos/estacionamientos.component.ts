@@ -45,17 +45,11 @@ export class EstacionamientosComponent implements OnInit {
     }
 
   ngOnInit(): void {
-
-   
     this.listarEstacionamientos('1');
-    
-     
-    
-    
-    
-     
-    
       }   
+
+
+
       listarEstacionamientos(condominioID: any): void {
         this.estacionamientoService.list(condominioID).subscribe(
           (data: any) => {
@@ -69,6 +63,7 @@ export class EstacionamientosComponent implements OnInit {
       }
 
  
+      add(): void {}
 
 
 

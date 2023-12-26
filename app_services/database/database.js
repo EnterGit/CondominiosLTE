@@ -12,6 +12,7 @@ const db = mysql.createConnection({
   database: 'ingeni20_condominius'
 });
 
+
 db.connect((err) => {
   if (err) throw err;
   console.log('Connected to MySQL Database');

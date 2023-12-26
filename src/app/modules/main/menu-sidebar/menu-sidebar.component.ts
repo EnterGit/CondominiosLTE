@@ -60,6 +60,12 @@ export const MENU = [
         roles: ['admin', 'user']
     },
     {
+        name:'Estacionamientos',
+        iconClasses: 'fas fa-door-open',
+        path: ['/estacionamientos'],
+        roles: ['admin', 'user']
+    },
+    {
         name:'Propiedades',
         iconClasses: 'fas fa-door-open',
         path: ['/propiedad'],

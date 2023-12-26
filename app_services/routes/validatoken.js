@@ -13,12 +13,10 @@ function validaToken(req, res, next) {
 //   });
 
 jwt.verify(token, 'Pepito2023', (err, user) => {
-    if (err) return res.sendStatus(403);
+  if (err) return res.sendStatus(401);
     req.user = user;
     next();
   });
-
-
 }
 
 module.exports = validaToken;

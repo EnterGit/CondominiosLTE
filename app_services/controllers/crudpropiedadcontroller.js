@@ -17,7 +17,6 @@ exports.leer = (req, res) => {
     db.execute("SELECT * FROM propiedad INNER JOIN condominios ON propiedad.CondominioID = condominios.CondominioID order by propiedad.PropiedadID;")
         .then(([results]) => {
             res.send(results);
-            console.log(results);
         })
         .catch((error) => {
             console.error('Error: ', error);

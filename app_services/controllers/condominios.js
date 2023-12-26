@@ -47,7 +47,6 @@ exports.leer = (req, res) => {
     db.execute("SELECT * FROM condominios INNER JOIN tregion ON condominios.Region = tregion.REGION_ID INNER JOIN tcomuna ON condominios.Comuna = tcomuna.COMUNA_ID order by condominios.CondominioID")
             .then(([results]) => {
             res.send(results);
-            console.log(results);
         })
         .catch((error) => {
             console.error('Error: ', error);
@@ -58,7 +57,6 @@ exports.leer = (req, res) => {
 
 // Update
 exports.update = async (req, res) => {
-    console.log('req.body: ', req.body);
     let data = {
         Nombre: req.body.NombreCondominio,
         Direccion: req.body.DireccionCondominio,

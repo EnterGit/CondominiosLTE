@@ -46,7 +46,7 @@ update(estacionamientoID: number, condominioID: number, numeroEstacionamiento: n
 
 
 list(condominioID: number): Observable<any> {
-  return this.http.get(`${this.apiUrl}/estacionamientos/${condominioID}`).pipe(
+  return this.http.get(`${this.apiUrl}/estacionamientos/list`).pipe(
     catchError(error => {
       console.error('Error in list: ', error);
       return throwError(error);

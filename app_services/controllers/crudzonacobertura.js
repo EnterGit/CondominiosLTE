@@ -78,3 +78,14 @@ exports.listByCondominioID = async (req, res) => {
 };
 
 
+exports.list = async (req, res) => {
+    try {
+        const [rows] = await db.execute("SELECT * FROM zonacobertura");
+        console.log(`Zonas de cobertura recuperadas: ${rows.length}`);
+        res.status(200).send(rows);
+    } catch (error) {
+        console.log(`Error al recuperar zonas de cobertura: ${error}`);
+        res.status(500).send({ message: 'No fue posible recuperar las zonas de cobertura', error: error });
+    }
+}
+

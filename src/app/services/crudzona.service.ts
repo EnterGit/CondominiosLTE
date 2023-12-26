@@ -24,4 +24,41 @@ export class CrudzonaService {
 
   constructor(private http: HttpClient) { }
 
+
+
+  getlist(): Observable<any> {
+    console.log('listarPortones was called');
+  
+    const token = JSON.parse(localStorage.getItem('ACCESO') ?? '{}');
+    return this.http.get('http://localhost:3000/zonacobertura/list', {
+      headers: { 'x-token': token },
+    }).pipe(
+      tap((response: any) => {
+        console.log('lista responded with', response);
+      }),
+      catchError((error: any) => {
+        console.log('There was an error listing the portones', error);
+        throw error;
+      })
+    );
+  }
+
+  getlistvistaById(IdCondominio: string): Observable<any> {
+ 
+  
+    const token = JSON.parse(localStorage.getItem('ACCESO') ?? '{}');
+    return this.http.get(`http://localhost:3000/visitas/list/${IdCondominio}`, {   
+  
+      headers: { 'x-token': token },
+    }).pipe(
+      tap((response: any) => {
+  
+      }),
+      catchError((error: any) => {
+       
+        throw error;
+      })
+    );
+  }
+
 }

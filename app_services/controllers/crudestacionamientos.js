@@ -67,7 +67,7 @@ exports.delete = async (req, res) => {
 
 exports.list = async (req, res) => {
     try {
-        const [rows] = await db.execute("SELECT * FROM estacionamientos");
+        const [rows] = await db.execute("SELECT estacionamientos.EstacionamientoID, condominios.Nombre, condominios.Direccion, condominios.NumeroDireccion, estacionamientos.NumeroEstacionamiento, estacionamientos.Disponible FROM estacionamientos INNER JOIN condominios ON estacionamientos.CondominioID = condominios.CondominioID order by condominios.CondominioID");
         console.log(`Estacionamientos recuperados: ${rows.length}`);
         res.status(200).send(rows);
     } catch (error) {

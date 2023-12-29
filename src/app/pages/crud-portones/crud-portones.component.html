@@ -6,64 +6,46 @@
             <div class="card-header">
                 <h3 class="card-title">Lista de Portones Condominios</h3>
                 <mat-card-header>
-                
-                    <button style="margin-left: 80%;"  *appShowforroles="['admin']" (click)="add()" mat-raised-button color="primary">Nuevo Porton (+)</button>
-                    
+                    <button style="margin-left: 80%;" *appShowforroles="['admin']" (click)="add()" mat-raised-button
+                        color="primary">Nuevo Porton (+)</button>
                 </mat-card-header>
             </div>
             <div class="card-body">
                 <div class="container-fluid">
-
- 
-
-    <div class="row justify-content-center">
-        <div class="col-lg-12 col-sm-3">
-
-            <mat-card>
-               
-            
-                    
-            </mat-card>
-            
-
-            <table class="table table-striped table-bordered table-hover">
-                          <thead class="thead-dark">
-             
-                    <tr>
-                        <th>Id Porton</th>
-                        <th>Nombre</th>
-                        <th>Dirección</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let porton of portones">
-                        <td>{{ porton.PortonID }}</td>
-                        <td>{{ porton.Nombre }}</td>
-                        <td>{{ porton.Descripcion }}</td>
-                        <td>
-                 
-
-                            
-
-                                <button (click)="editcustomer(porton.PortonID)" mat-raised-button color="primary">Actualizar</button>
-                       
-                                <button class="btn btn-danger" (click)="deletePorton(porton.PortonID)">Eliminar</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-
-            <mat-paginator [length]="allPortones.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" (page)="onPageChange($event)"></mat-paginator>
-
-            
-        </div>
-    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12 col-sm-3">
+                            <mat-card>
+                            </mat-card>
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Id Porton</th>
+                                        <th>Nombre</th>
+                                        <th>Dirección</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let porton of portones">
+                                        <td>{{ porton.PortonID }}</td>
+                                        <td>{{ porton.Nombre }}</td>
+                                        <td>{{ porton.Descripcion }}</td>
+                                        <td>
+                                            <button (click)="editcustomer(porton.PortonID)" mat-raised-button
+                                                color="primary">Actualizar</button>
+                                            <button class="btn btn-danger"
+                                                (click)="deletePorton(porton.PortonID)">Eliminar</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <mat-paginator [length]="allPortones.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 20]"
+                                (page)="onPageChange($event)"></mat-paginator>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card-footer">Footer</div>
         </div>
     </div>
 </section>
-

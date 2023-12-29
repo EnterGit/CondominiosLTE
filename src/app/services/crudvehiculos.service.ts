@@ -35,7 +35,29 @@ postAddVisitas(Rut: string, NombreVisitante: string, FechaHoraEntrada: Date, Fec
     PropiedadID,
     Placa
   });
+  
+}
+
+
+getlistvehiculoById(IdCondominio: string): Observable<any> { 
+  
+  const token = JSON.parse(localStorage.getItem('ACCESO') ?? '{}');
+  return this.http.get(`http://localhost:3000/vehiculos/listgetByCode/${IdCondominio}`, {   
+
+    headers: { 'x-token': token },
+  }).pipe(
+    tap((response: any) => {
+
+    }),
+    catchError((error: any) => {
+     
+      throw error;
+    })
+  );
 }
 
 
 }
+
+
+

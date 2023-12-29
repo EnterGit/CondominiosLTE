@@ -60,9 +60,11 @@ import { CrudPropiedadComponent } from './pages/popup/crud-propiedad/crud-propie
 import { CrudVehiculoComponent } from './pages/popup/crud-vehiculo/crud-vehiculo.component';
 import { CrudVisitasComponent } from './pages/popup/crud-visitas/crud-visitas.component';
 import { CrudZonasComponent } from './pages/popup/crud-zonas/crud-zonas.component';
+import { ZonasComponent } from '@pages/zonas/zonas.component';
 import { MatInputModule } from '@angular/material/input';
 import { ShowforrolesDirective } from './guards/directives/showforroles.directive';
 import { CrudCondominiosComponent } from './pages/popup/crud-condominios/crud-condominios.component';
+
 
 
 
@@ -106,6 +108,7 @@ registerLocaleData(localeEn, 'en-EN');
         CrudZonasComponent,
         ShowforrolesDirective,
         CrudCondominiosComponent,
+        ZonasComponent
         
     ],
     imports: [

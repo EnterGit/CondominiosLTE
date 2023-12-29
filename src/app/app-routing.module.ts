@@ -22,6 +22,7 @@ import { EstacionamientosComponent } from '@pages/estacionamientos/estacionamien
 import { VisitasComponent } from '@pages/visitas/visitas.component';
 import { PropiedadComponent } from '@pages/propiedad/propiedad.component';
 import { VehiculosComponent } from '@pages/vehiculos/vehiculos.component';
+import { ZonasComponent } from '@pages/zonas/zonas.component';
 
 //popup
 import { PortonesComponent } from './pages/popup/portones/portones.component';
@@ -96,11 +97,19 @@ const routes: Routes = [
             },
             {
                 path: 'vehiculos',
-                component: VehiculosComponent
+                component: VehiculosComponent,
+                canActivate: [AuthmenuGuard],
+                data: { role: 'admin' }
             },
             {
                 path: 'crud-vehiculo',
                 component: CrudVehiculoComponent
+            },
+            {
+                path: 'zonas',
+                component: ZonasComponent,
+                canActivate: [AuthmenuGuard],
+                data: { role: 'admin' }
             },
          
             {

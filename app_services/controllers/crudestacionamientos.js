@@ -26,11 +26,11 @@ exports.add = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-    const EstacionamientoID = req.params.id;
+    const EstacionamientoID = req.body.EstacionamientoID;
     const { CondominioID, NumeroEstacionamiento, Disponible } = req.body;
-
+    console.log(`Actualizando estacionamiento con ID: ${EstacionamientoID}` + JSON.stringify(req.body));
     try {
-        const [result] = await db.execute("UPDATE estacionamientos SET CondominioID = ?, NumeroEstacionamiento = ?, Disponible = ? WHERE EstacionamientoID = ?", [CondominioID, NumeroEstacionamiento, Disponible, EstacionamientoID]);
+        const [result] = await db.execute("UPDATE estacionamientos SET NumeroEstacionamiento = ?, Disponible = ? WHERE EstacionamientoID = ?", [NumeroEstacionamiento, Disponible, EstacionamientoID]);
         if (result.affectedRows > 0) {
             console.log(`Estacionamiento actualizado con ID: ${EstacionamientoID}`);
             res.status(200).send({ message: 'Estacionamiento actualizado' });
@@ -46,8 +46,8 @@ exports.update = async (req, res) => {
 
 
 exports.delete = async (req, res) => {
-    const EstacionamientoID = req.params.id;
-
+    const EstacionamientoID = req.body.EstacionamientoID;
+    console.log(`Eliminando estacionamiento con ID: ${EstacionamientoID}` + JSON.stringify(req.body));
     try {
         const [result] = await db.execute("DELETE FROM estacionamientos WHERE EstacionamientoID = ?", [EstacionamientoID]);
         if (result.affectedRows > 0) {
@@ -63,15 +63,24 @@ exports.delete = async (req, res) => {
     }
 };
 
-
-
 exports.list = async (req, res) => {
     try {
         const [rows] = await db.execute("SELECT estacionamientos.EstacionamientoID, condominios.Nombre, condominios.Direccion, condominios.NumeroDireccion, estacionamientos.NumeroEstacionamiento, estacionamientos.Disponible FROM estacionamientos INNER JOIN condominios ON estacionamientos.CondominioID = condominios.CondominioID order by condominios.CondominioID");
-        console.log(`Estacionamientos recuperados: ${rows.length}`);
         res.status(200).send(rows);
     } catch (error) {
         console.log(`Error al recuperar estacionamientos: ${error}`);
         res.status(500).send({ message: 'No fue posible recuperar los estacionamientos', error: error });
     }
 };
+
+//  get single estacionamiento
+exports.showByEstacionamientoID = async (req, res) => {
+    const EstacionamientoID = req.params.id;
+    try {
+        const [rows] = await db.execute("SELECT estacionamientos.EstacionamientoID, condominios.Nombre, condominios.Direccion, condominios.NumeroDireccion, estacionamientos.NumeroEstacionamiento, estacionamientos.Disponible FROM estacionamientos INNER JOIN condominios ON estacionamientos.CondominioID = condominios.CondominioID WHERE EstacionamientoID = ?", [EstacionamientoID]);
+        res.status(200).send(rows);
+    } catch (error) {
+        console.log(`Error al recuperar datos: ${error}`);
+        res.status(500).send({ message: 'No fue posible recuperar los datos', error: error });
+    }
+};  //  get single estacionamiento

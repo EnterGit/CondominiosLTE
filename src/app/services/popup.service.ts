@@ -25,9 +25,8 @@ export class PopupService {
       });
   
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-        this.updatePageService.updatePage();
-        
+        console.log('The dialog was closed!!!');
+        this.updatePageService.updatePage();    
       });
     } else {
       // No abre el popup y posiblemente muestra un mensaje de error

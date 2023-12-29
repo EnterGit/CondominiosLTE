@@ -1,1 +1,47 @@
-<p>crud-estacionamientos works!</p>
+<form [formGroup]="myform" class="my-form" *ngIf="!showFormDelete" novalidate>
+    <h1 mat-dialog-title class="form-title">{{inputdata.title}}</h1>
+    <div mat-dialog-content>
+        <mat-form-field class="form-field">
+            <mat-label>Condominio</mat-label>
+            <input formControlName="Nombre" matInput readonly>
+            <input formControlName="EstacionamientoID" matInput [hidden]="true">
+        </mat-form-field>
+        <mat-form-field class="form-field">
+            <mat-label>Estacionamiento </mat-label>
+            <input formControlName="NumeroEstacionamiento" matInput>
+        </mat-form-field>
+        <mat-form-field class="form-field">
+            <mat-label>Estado</mat-label>
+            <input formControlName="Disponible" matInput [hidden]="true">
+            <mat-slide-toggle formControlName="Disponible" ></mat-slide-toggle>
+        </mat-form-field>
+
+        <!-- <mat-form-field class="form-field">
+            <mat-label>Región</mat-label>
+            <mat-select formControlName="RegionCondominio" [(value)]="selectedId" (selectionChange)="onRegionChange(selectedId)">
+              <mat-option *ngFor="let region of regiones" [value]="region.REGION_ID">{{region.REGION_NOMBRE}}</mat-option>
+            </mat-select>
+          </mat-form-field> -->
+    </div>
+    <div mat-dialog-actions class="form-actions">
+        <button mat-raised-button type="submit" *ngIf="!showUpdateButton" (click)="SaveEstacionamiento()" color="primary"
+            [disabled]="!myform.valid" class="form-button">Guardar</button> <!-- modify this line -->
+        <button mat-raised-button color="primary" *ngIf="showUpdateButton" (click)="updateEstacionamiento(buttonValue)"
+            [disabled]="!myform.valid" class="form-button">Actualizar</button>
+        <a (click)="closepopup()" mat-raised-button color="warn" class="form-button">Cerrar</a>
+    </div>
+</form>
+
+
+
+<div *ngIf="showFormDelete">
+    <h2 mat-dialog-title class="dialog-title">{{data.title}} {{ data.code.NumeroEstacionamiento }}</h2>
+    <mat-dialog-content class="dialog-content">
+        {{data.message}} 
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button color="warn" (click)="closepopup()">No</button>
+        <button mat-button color="primary" (click)="onConfirm(inputdata.code)">Yes</button>
+    </mat-dialog-actions>
+</div>

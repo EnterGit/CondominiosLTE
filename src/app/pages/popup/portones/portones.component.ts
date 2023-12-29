@@ -209,7 +209,7 @@ onConfirm(code: any){
 
 
 closepopup(){
-  console.log("closepopup");
+  console.log("closepopup portones");
   this.ref.close('Closed using function');
 }
 

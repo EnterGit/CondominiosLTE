@@ -3,8 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ListarcondominiosService } from '@services/listarcondominios.service';
 import { ListacombosService } from '@services/listacombos.services';
-
-
 import {ToastrService} from 'ngx-toastr';
 
 
@@ -135,7 +133,7 @@ export class CrudCondominiosComponent implements OnInit {
   }
 
   closepopup(){
-    console.log("closepopup");
+    console.log("closepopup condominio");
     this.ref.close('Closed using function');
   }
 

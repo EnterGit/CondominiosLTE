@@ -13,7 +13,7 @@ export class CrudestacionamientoService {
   constructor(private http: HttpClient) {}
 
 
-add(condominioID: number, numeroEstacionamiento: number, disponible: boolean): Observable<any> {
+addEstacionamiento(condominioID: number, numeroEstacionamiento: number, disponible: boolean): Observable<any> {
   const body = { CondominioID: condominioID, NumeroEstacionamiento: numeroEstacionamiento, Disponible: disponible };
   return this.http.post(`${this.apiUrl}/estacionamientos`, body).pipe(
     catchError(error => {
@@ -24,25 +24,21 @@ add(condominioID: number, numeroEstacionamiento: number, disponible: boolean): O
 }
 
 
-update(estacionamientoID: number, condominioID: number, numeroEstacionamiento: number, disponible: boolean): Observable<any> {
-  const body = { EstacionamientoID: estacionamientoID, CondominioID: condominioID, NumeroEstacionamiento: numeroEstacionamiento, Disponible: disponible };
-  return this.http.put(`${this.apiUrl}/estacionamientos`, body).pipe(
-    catchError(error => {
-      console.error('Error in update: ', error);
-      return throwError(error);
-    })
-  );
+updateEstacionamiento(estacionamiento: any): Observable<any> {
+  console.log('Desde services Angular updateCondominio fue llamado con', estacionamiento);
+  const token = JSON.parse(localStorage.getItem('ACCESO') ?? '{}');
+  const headers = { 'Authorization': 'Bearer ' + token };
+  return this.http.post('http://localhost:3000/estacionamientos/update/', estacionamiento, { headers }); 
 }
 
 
-  delete(estacionamientoID: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/estacionamientos/${estacionamientoID}`).pipe(
-      catchError(error => {
-        console.error('Error in deleteEstacionamiento: ', error);
-        return throwError(error);
-      })
-    );
-  }
+deleteEstacionamiento(estacionamientoID: any): Observable<any> {
+
+  console.log('Desde services Angular deleteCondominio fue llamado con', estacionamientoID);
+    const token = JSON.parse(localStorage.getItem('ACCESO') ?? '{}');
+    const headers = { 'Authorization': 'Bearer ' + token };
+    return this.http.post('http://localhost:3000/estacionamientos/delete/', estacionamientoID, { headers });
+}
 
 
 list(condominioID: number): Observable<any> {
@@ -54,7 +50,11 @@ list(condominioID: number): Observable<any> {
   );
 }
 
-
+getEstacionamientosId(estacionamientoId: number): Observable<any> {
+  const token = JSON.parse(localStorage.getItem('ACCESO') ?? '{}');
+  const headers = { 'Authorization': 'Bearer ' + token };
+  return this.http.get('http://localhost:3000/estacionamientos/' + estacionamientoId, { headers });
+}
 
 
 }

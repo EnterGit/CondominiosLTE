@@ -22,7 +22,7 @@ export class CondominiosComponent implements OnInit{
   allCondominios: any[] = [];
 
   constructor(
-    // @Inject(MAT_DIALOG_DATA) public data: any,
+    //@Inject(MAT_DIALOG_DATA) public data: any,
     private listarcondominiosService: ListarcondominiosService,
     private popupService: PopupService,
     private updatePageService: UpdatePageService,

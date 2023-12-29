@@ -75,3 +75,19 @@ exports.list = async (req, res) => {
         res.status(500).send({ message: 'No fue posible recuperar los vehiculos', error: error });
     }
 };
+
+exports.listgetByCode = async (req, res) => {
+    const CondominioID = req.params.id;
+
+    try {
+        const [rows] = await db.execute("SELECT V.VehiculoID, V.Rut, V.Placa, C.Nombre, C.Direccion, U.Nombres, U.Apellidos FROM vehiculos AS V JOIN condominios C ON V.CondominioID = C.CondominioID JOIN usuarios U ON V.Rut = U.Rut WHERE V.CondominioID = ?", [CondominioID]);
+        console.log(`Vehiculos recuperada¿os: ${rows.length}`);
+        res.status(200).send(rows);
+    } catch (error) {
+        console.log(`Error al recuperar vehiculos: ${error}`);
+        res.status(500).send({ message: 'No fue posible recuperar las vehiculos', error: error });
+    }
+};
+
+
+

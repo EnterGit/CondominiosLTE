@@ -43,11 +43,12 @@ export class CrudzonaService {
     );
   }
 
-  getlistvistaById(IdCondominio: string): Observable<any> {
- 
+  getlistZonaById(IdCondominio: string): Observable<any> {
+  console.log('listarZona was called');
+  console.log('IdCondominio', IdCondominio);
   
     const token = JSON.parse(localStorage.getItem('ACCESO') ?? '{}');
-    return this.http.get(`http://localhost:3000/visitas/list/${IdCondominio}`, {   
+    return this.http.get(`http://localhost:3000/zonacobertura/listbyCondominioID/${IdCondominio}`, {   
   
       headers: { 'x-token': token },
     }).pipe(

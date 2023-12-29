@@ -4,9 +4,9 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Lista de Condominios</h3>
+                <h3 class="card-title">Lista de Zonas</h3>
                 
-                  <button style="margin-left: 80%;" *appShowforroles="['admin']" mat-raised-button color="primary">Nuevo Condominio (+)</button>
+                  <button style="margin-left: 80%;" *appShowforroles="['admin']" mat-raised-button color="primary">Nueva Zona (+)</button>
               
             </div>
             <div class="card-body">
@@ -26,13 +26,13 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let visitas of visitas">
-                              <td>{{ visitas.Rut }}</td>
-                              <td>{{ visitas.NombreVisitante }}</td>
-                              <td>{{ visitas.FechaHoraEntrada }}</td>
-                              <td>{{ visitas.FechaHoraSalida }}</td>
-                              <td>{{ visitas.PropiedadID }}</td>     
-                              <td>{{ visitas.Placa }}</td>                           
+                            <tr *ngFor="let zonas of zonas">
+                              <td>{{ zonas.nombre_condominio }}</td>
+                              <td>{{ zonas.LatLng_A }}</td>
+                              <td>{{ zonas.LatLng_B }}</td>
+                              <td>{{ zonas.LatLng_C }}</td>
+                              <td>{{ zonas.LatLng_D }}</td>     
+                                                    
                               <td>
                                 <button class="btn btn-primary">Editar</button>
                                 <!-- <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon">

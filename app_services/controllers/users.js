@@ -147,3 +147,12 @@ router.delete('/delete', (req, res) => {
 });
 
 // module.exports = router;
+
+// List
+router.get('/list', (req, res) => {
+  let sql = "SELECT * FROM usuarios";
+  db.query(sql, (err, results) => {
+    if(err) throw err;
+    res.send(results);
+  });
+});

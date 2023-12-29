@@ -68,7 +68,12 @@ exports.listByCondominioID = async (req, res) => {
     const CondominioID = req.params.id;
 
     try {
-        const [rows] = await db.execute("SELECT * FROM zonacobertura WHERE CondominioID = ?", [CondominioID]);
+        const [rows] = await db.execute(`
+            SELECT zonacobertura.*, condominios.nombre AS nombre_condominio 
+            FROM zonacobertura 
+            INNER JOIN condominios ON zonacobertura.CondominioID = condominios.CondominioID 
+            WHERE zonacobertura.CondominioID = ?
+        `, [CondominioID]);
         console.log(`Zonas de cobertura recuperadas: ${rows.length}`);
         res.status(200).send(rows);
     } catch (error) {
@@ -76,6 +81,10 @@ exports.listByCondominioID = async (req, res) => {
         res.status(500).send({ message: 'No fue posible recuperar las zonas de cobertura', error: error });
     }
 };
+
+
+
+
 
 
 exports.list = async (req, res) => {

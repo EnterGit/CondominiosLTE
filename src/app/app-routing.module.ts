@@ -1,3 +1,4 @@
+import { RegistrovisitasComponent } from './pages/registrovisitas/registrovisitas.component';
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {MainComponent} from '@modules/main/main.component';
@@ -108,6 +109,12 @@ const routes: Routes = [
             {
                 path: 'zonas',
                 component: ZonasComponent,
+                canActivate: [AuthmenuGuard],
+                data: { role: 'admin' }
+            },
+            {
+                path: 'registrovisitas',
+                component: RegistrovisitasComponent,
                 canActivate: [AuthmenuGuard],
                 data: { role: 'admin' }
             },

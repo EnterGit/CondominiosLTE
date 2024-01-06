@@ -1,0 +1,21 @@
+mat-grid-tile {
+    background: lightblue;
+  }
+  
+  .form-group {
+    margin-bottom: 5px; /* Ajusta este valor según tus necesidades */
+}
+
+mat-radio-button {
+  margin-right: 20px; /* Ajusta este valor según tus necesidades */
+  margin-left: 20px; /* Ajusta este valor según tus necesidades */
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+}

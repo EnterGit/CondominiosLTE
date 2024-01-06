@@ -44,6 +44,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatRadioModule} from '@angular/material/radio';
+import { MatSliderModule } from '@angular/material/slider';
+
+// Modulos personalizados
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { CustomDateAdapter } from './utils/CustomDateAdapter';
+
+
 
 //paginas
 import { CrudPortonesComponent } from '../app/pages/crud-portones/crud-portones.component';
@@ -63,10 +75,9 @@ import { CrudVehiculoComponent } from './pages/popup/crud-vehiculo/crud-vehiculo
 import { CrudVisitasComponent } from './pages/popup/crud-visitas/crud-visitas.component';
 import { CrudZonasComponent } from './pages/popup/crud-zonas/crud-zonas.component';
 import { ZonasComponent } from '@pages/zonas/zonas.component';
-import { MatInputModule } from '@angular/material/input';
 import { ShowforrolesDirective } from './guards/directives/showforroles.directive';
 import { CrudCondominiosComponent } from './pages/popup/crud-condominios/crud-condominios.component';
-
+import { RegistrovisitasComponent } from './pages/registrovisitas/registrovisitas.component';
 
 
 
@@ -110,10 +121,12 @@ registerLocaleData(localeEn, 'en-EN');
         CrudZonasComponent,
         ShowforrolesDirective,
         CrudCondominiosComponent,
-        ZonasComponent
-        
+        ZonasComponent,
+        RegistrovisitasComponent,
+
     ],
     imports: [
+
         MatCardModule,
         MatSelectModule,
         MatFormFieldModule,
@@ -124,6 +137,11 @@ registerLocaleData(localeEn, 'en-EN');
         MatSelectModule,
         MatPaginatorModule,
         MatSlideToggleModule,
+        MatDatepickerModule,      
+        MatNativeDateModule,
+        MatGridListModule,
+        MatRadioModule,
+        MatSliderModule,
         ProfabricComponentsModule,
         CommonModule,
         BrowserModule,
@@ -139,10 +157,14 @@ registerLocaleData(localeEn, 'en-EN');
             preventDuplicates: true
         })
     ],
-    providers: [],
+    providers: [
+        { provide: DateAdapter, useClass: CustomDateAdapter, deps: [MAT_DATE_LOCALE] },
+    ],
     bootstrap: [AppComponent],
     exports: [
       ShowforrolesDirective
     ]
 })
-export class AppModule {}
+export class AppModule {
+   
+}

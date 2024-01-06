@@ -1,12 +1,14 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { PageEvent } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+
+//servicios
 import { ListarcondominiosService } from '../../services/listarcondominios.service';
 import { PopupService } from '@services/popup.service';
 import { CrudCondominiosComponent } from '../popup/crud-condominios/crud-condominios.component';
 import { UpdatePageService } from '@services/update-page.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 
 
 @Component({
@@ -31,8 +33,7 @@ export class CondominiosComponent implements OnInit{
     { 
       this.updatePageService.updatePageObservable.subscribe(() => {
         this.Listarcondominios();
-      }
-      )
+      })
     }
 
 

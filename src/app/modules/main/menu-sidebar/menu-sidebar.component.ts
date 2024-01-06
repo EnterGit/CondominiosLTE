@@ -80,13 +80,19 @@ export const MENU = [
     {   
         name: 'Zonas',
         iconClasses: 'fas fa-door-open',
-        path: ['/Zonas'],
+        path: ['/zonas'],
         roles: ['admin', 'user']
     },
     {
         name:'Vehiculos',
         iconClasses: 'fas fa-door-open',
         path: ['/vehiculos'],
+        roles: ['admin', 'user']
+    },
+    {
+        name:'RegistroVisitas',
+        iconClasses: 'fas fa-door-open',
+        path: ['/registrovisitas'],
         roles: ['admin', 'user']
     },
     {

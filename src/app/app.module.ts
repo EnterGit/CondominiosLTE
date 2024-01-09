@@ -50,11 +50,12 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatRadioModule} from '@angular/material/radio';
 import { MatSliderModule } from '@angular/material/slider';
+import {MatDividerModule} from '@angular/material/divider'
 
 // Modulos personalizados
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { CustomDateAdapter } from './utils/CustomDateAdapter';
-
+import { RutModule } from 'rut-chileno';
 
 
 //paginas
@@ -123,7 +124,7 @@ registerLocaleData(localeEn, 'en-EN');
         CrudCondominiosComponent,
         ZonasComponent,
         RegistrovisitasComponent,
-
+        
     ],
     imports: [
 
@@ -142,6 +143,8 @@ registerLocaleData(localeEn, 'en-EN');
         MatGridListModule,
         MatRadioModule,
         MatSliderModule,
+        MatDividerModule,
+        RutModule,
         ProfabricComponentsModule,
         CommonModule,
         BrowserModule,

@@ -80,7 +80,7 @@ export const MENU = [
     {   
         name: 'Zonas',
         iconClasses: 'fas fa-door-open',
-        path: ['/Zonas'],
+        path: ['/zonas'],
         roles: ['admin', 'user']
     },
     {
@@ -93,6 +93,9 @@ export const MENU = [
         name:'Configuraciones',
         iconClasses: 'fas fa-door-open',
         path: ['/configuraciones'],
+        name:'RegistroVisitas',
+        iconClasses: 'fas fa-door-open',
+        path: ['/registrovisitas'],
         roles: ['admin', 'user']
     },
     {

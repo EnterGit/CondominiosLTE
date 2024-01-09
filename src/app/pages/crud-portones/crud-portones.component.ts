@@ -1,28 +1,12 @@
-
-import { HttpClient, HttpEventType } from '@angular/common/http';
-import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { DatePipe } from '@angular/common';
-
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-
-
-
-//material
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatInputModule } from '@angular/material/input';
-import{MatFormFieldModule } from '@angular/material/form-field';
-import { MatCardModule } from '@angular/material/card';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-
 
 //servicios
 import { crudPortonesService } from '../../services/crudportones.services';
 import { PortonesComponent } from '../popup/portones/portones.component';
 import { PopupService } from '@services/popup.service';
 import { UpdatePageService } from '@services/update-page.service';
-
 
 import {ToastrService} from 'ngx-toastr';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -56,12 +40,10 @@ export class CrudPortonesComponent implements OnInit {
       private popupService: PopupService,
       private toastr: ToastrService,
       private updatePageService: UpdatePageService,      
-      
-       )
+    )
    { 
     this.updatePageService.updatePageObservable.subscribe(() => {
       this.listarPortones();
-
    })
   }
 
@@ -96,11 +78,6 @@ add(){
     }
 
 
-
-
-
-
-
 editarPorton(PortonID: string, CondominioID: string, Descripcion: string) {
   console.log('updatePorton fue llamado con', PortonID, CondominioID, Descripcion); // Agrega esto
 
@@ -119,59 +96,23 @@ editarPorton(PortonID: string, CondominioID: string, Descripcion: string) {
 
 
 deletePorton(PortonID: string) {
- /* const confirmDelete = window.confirm('¿Desea Eliminar Porton?');
-  if (confirmDelete) {
-    this.crudPortonesService.getDeletePortones(PortonID).subscribe(
-      response => {
-        console.log(response);
-          this.toastr.success('porton  Eliminado');
-        this.listarPortones(); // refresh the list after successful delete
-      },
-      error => {
-        console.error(error);
-
-        this.toastr.error('porton no  Eliminado');
-      }
-    );
-  }*/
-
   this.popupService.openPopupDelete(PortonesComponent, 'admin', 'Eliminar Porton', PortonID,"Porton");
- 
 }
 
 Openpopup() {
-
   console.log('Openpopup fue llamado'); // Agrega esto
-  // var _popup= this.dialog.open(PortonesComponent, {
-  //   width: '60%',
-  //   enterAnimationDuration: '1000ms',
-  //   exitAnimationDuration: '1000ms',
-  //   height: '400px',
-  //   data: { 
-  //   title : "Formulario de Registro Portones 222"
-  //   } 
-  //    });
-  //   _popup.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //   }
-  //   );
-
   this.popupService.openPopup(PortonesComponent, 'admin', 'Formulario de Registro Portones 2', "");
   }
 
   editcustomer(code: any) {
     console.log('editcustomer fue llamado  web', code); // Agrega esto
     //this.Openpopup(code, 'Edit Customer',PortonesComponent);
-  
     this.popupService.openPopup(PortonesComponent, 'admin', 'Editar Porton', code);
-
   }
 
   onPageChange(event: PageEvent) {
     const startIndex = event.pageIndex * event.pageSize;
     const endIndex = startIndex + event.pageSize;
     this.portones = this.allPortones.slice(startIndex, endIndex);
-
-
-}
+  }
 }

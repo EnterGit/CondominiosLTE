@@ -118,7 +118,42 @@ exports.getByCode = async (req, res) => {
     }
 };
 
+exports.listLastInsert = async (req, res) => {
+    try {
+        const [rows] = await db.execute(`
+            SELECT PortonID, CondominioID, Descripcion
+            FROM portones
+            ORDER BY PortonID DESC
+        `);
+        res.status(200).send(rows);
+    } catch (error) {
+        console.error('Error: ', error);
+        res.status(500).send({ message: 'No fue posible obtener la lista de portones', error: error });
+    }
+};
 
+
+exports.listLastInsertByCondominioId = async (req, res) => {
+    const CondominioID = req.params.id;
+
+    try {
+        const [rows] = await db.execute(`
+            SELECT PortonID, CondominioID, Descripcion
+            FROM portones
+            WHERE CondominioID = ?
+            ORDER BY PortonID DESC
+
+            SELECT portones.*, condominios.Nombre 
+            FROM portones 
+            INNER JOIN condominios ON portones.CondominioID = condominios.CondominioID 
+            WHERE PortonID = ?
+        `, [CondominioID]);
+        res.status(200).send(rows);
+    } catch (error) {
+        console.error('Error: ', error);
+        res.status(500).send({ message: 'No fue posible obtener la lista de portones', error: error });
+    }
+};
 
 
 

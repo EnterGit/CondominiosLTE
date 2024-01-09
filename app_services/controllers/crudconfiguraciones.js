@@ -90,7 +90,11 @@ exports.delete = async (req, res) => {
 
 exports.list = async (req, res) => {
     try {
-        const [rows] = await db.execute("SELECT * FROM configuraciones");
+        const [rows] = await db.execute(`
+            SELECT configuraciones.*, condominios.nombre AS nombre_condominio 
+            FROM configuraciones 
+            INNER JOIN condominios ON configuraciones.CondominioID = condominios.CondominioID
+        `);
         res.status(200).send(rows);
     } catch (error) {
         console.error('Error: ', error);

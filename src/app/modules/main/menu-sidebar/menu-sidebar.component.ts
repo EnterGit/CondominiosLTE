@@ -90,6 +90,9 @@ export const MENU = [
         roles: ['admin', 'user']
     },
     {
+        name:'Configuraciones',
+        iconClasses: 'fas fa-door-open',
+        path: ['/configuraciones'],
         name:'RegistroVisitas',
         iconClasses: 'fas fa-door-open',
         path: ['/registrovisitas'],

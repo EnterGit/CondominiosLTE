@@ -50,8 +50,31 @@ export class crudConfiguracionesService {
             );
             }
 
+
     // listar portones
-    getlistConfiguracion(CondominioID: string): Observable<any> {
+    getlistConfiguracion(): Observable<any> {
+console.log('Desde services Angular getlistConfiguracion fue llamado'); // Agrega esto
+
+      const token = JSON.parse(localStorage.getItem('ACCESO') ?? '{}');
+      return this.http.get(`http://localhost:3000/configuraciones/list`, {
+        headers: { 'x-token': token },
+      }).pipe(
+        tap((response: any) => {
+          console.log('getlistConfiguracion respondió con', response); // Agrega esto
+        }),
+        catchError((error: any) => {
+          console.log('Hubo un error al listar los Configuracion', error); // Agrega esto
+          throw error;
+        })
+      );
+    }
+
+
+
+   
+
+    // listar portones
+    getlistConfiguracionbyIdCondominio(CondominioID: string): Observable<any> {
       console.log('Desde services Angular getlistConfiguracion fue llamado con', CondominioID); // Agrega esto
   
       const token = JSON.parse(localStorage.getItem('ACCESO') ?? '{}');

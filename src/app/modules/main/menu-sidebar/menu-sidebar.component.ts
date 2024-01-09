@@ -93,7 +93,10 @@ export const MENU = [
         name:'Configuraciones',
         iconClasses: 'fas fa-door-open',
         path: ['/configuraciones'],
-        name:'RegistroVisitas',
+        roles: ['admin', 'user']
+    },
+    {
+        name:'Registro de Visitas',
         iconClasses: 'fas fa-door-open',
         path: ['/registrovisitas'],
         roles: ['admin', 'user']

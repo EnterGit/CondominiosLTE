@@ -1,58 +1,189 @@
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Blank Page</h1>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Blank Page</li>
-                </ol>
-            </div>
+<div class="container">
+<div class="main">
+<div class="cardBox">
+    <div class="card" *ngIf="isAdmin()">
+        <div>
+            <div class="numbers">1,504</div>
+            <div class="cardName">Daily Views</div>
+            {{ user.correo  }}
+        </div>
+
+        <div class="iconBx">
+           
+            <span class="material-icons">pie_chart</span>  
+           
         </div>
     </div>
-    <!-- /.container-fluid -->
-</section>
-
-<!-- Main content -->
-<section class="content">
-    <!-- Default box -->
-    <div class="container-fluid">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Title</h3>
-
-                <div class="card-tools">
-                    <button
-                        type="button"
-                        class="btn btn-tool"
-                        data-widget="collapse"
-                        data-toggle="tooltip"
-                        title="Collapse"
-                    >
-                        <i class="fa fa-minus"></i>
-                    </button>
-                    <button
-                        type="button"
-                        class="btn btn-tool"
-                        data-widget="remove"
-                        data-toggle="tooltip"
-                        title="Remove"
-                    >
-                        <i class="fa fa-times"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="card-body">
-                Start creating your amazing application!
-            </div>
-            <!-- /.card-body -->
-            <div class="card-footer">Footer</div>
-            <!-- /.card-footer-->
-        </div>
+    
+    <div class="card" *ngFor="let item of menu" [routerLink]= item.link>
+        <div class="numbers">{{ item.numero }}</div>
+        <div class="cardName">{{ item.name }}</div>
     </div>
-    <!-- /.card -->
-</section>
-<!-- /.content -->
+
+
+    
+</div> 
+
+<!-- ================ Order Details List ================= -->
+<div class="details">
+    <div class="recentOrders">
+        <div class="cardHeader">
+            <h2>Recent Orders</h2>
+            <a href="#" class="btn">View All</a>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Price</td>
+                    <td>Payment</td>
+                    <td>Status</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Star Refrigerator</td>
+                    <td>$1200</td>
+                    <td>Paid</td>
+                    <td><span class="status delivered">Delivered</span></td>
+                </tr>
+
+                <tr>
+                    <td>Dell Laptop</td>
+                    <td>$110</td>
+                    <td>Due</td>
+                    <td><span class="status pending">Pending</span></td>
+                </tr>
+
+                <tr>
+                    <td>Apple Watch</td>
+                    <td>$1200</td>
+                    <td>Paid</td>
+                    <td><span class="status return">Return</span></td>
+                </tr>
+
+                <tr>
+                    <td>Addidas Shoes</td>
+                    <td>$620</td>
+                    <td>Due</td>
+                    <td><span class="status inProgress">In Progress</span></td>
+                </tr>
+
+                <tr>
+                    <td>Star Refrigerator</td>
+                    <td>$1200</td>
+                    <td>Paid</td>
+                    <td><span class="status delivered">Delivered</span></td>
+                </tr>
+
+                <tr>
+                    <td>Dell Laptop</td>
+                    <td>$110</td>
+                    <td>Due</td>
+                    <td><span class="status pending">Pending</span></td>
+                </tr>
+
+                <tr>
+                    <td>Apple Watch</td>
+                    <td>$1200</td>
+                    <td>Paid</td>
+                    <td><span class="status return">Return</span></td>
+                </tr>
+
+                <tr>
+                    <td>Addidas Shoes</td>
+                    <td>$620</td>
+                    <td>Due</td>
+                    <td><span class="status inProgress">In Progress</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ================= New Customers ================ -->
+    <!-- <div class="recentCustomers">
+        <div class="cardHeader">
+            <h2>Recent Customers</h2>
+        </div>
+
+        <table>
+            <tr>
+                <td width="60px">
+                    <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
+                </td>
+                <td>
+                    <h4>David <br> <span>Italy</span></h4>
+                </td>
+            </tr>
+
+            <tr>
+                <td width="60px">
+                    <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
+                </td>
+                <td>
+                    <h4>Amit <br> <span>India</span></h4>
+                </td>
+            </tr>
+
+            <tr>
+                <td width="60px">
+                    <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
+                </td>
+                <td>
+                    <h4>David <br> <span>Italy</span></h4>
+                </td>
+            </tr>
+
+            <tr>
+                <td width="60px">
+                    <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
+                </td>
+                <td>
+                    <h4>Amit <br> <span>India</span></h4>
+                </td>
+            </tr>
+
+            <tr>
+                <td width="60px">
+                    <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
+                </td>
+                <td>
+                    <h4>David <br> <span>Italy</span></h4>
+                </td>
+            </tr>
+
+            <tr>
+                <td width="60px">
+                    <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
+                </td>
+                <td>
+                    <h4>Amit <br> <span>India</span></h4>
+                </td>
+            </tr>
+
+            <tr>
+                <td width="60px">
+                    <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
+                </td>
+                <td>
+                    <h4>David <br> <span>Italy</span></h4>
+                </td>
+            </tr>
+
+            <tr>
+                <td width="60px">
+                    <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
+                </td>
+                <td>
+                    <h4>Amit <br> <span>India</span></h4>
+                </td>
+            </tr>
+        </table>
+    </div> -->
+</div>
+</div>
+</div>
+    <!-- ====== ionicons ======= -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

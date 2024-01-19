@@ -1,0 +1,64 @@
+/* Cambia el color de fondo del sidebar */
+.sidebar-dark-primary {
+    /* background-color: #ffa726 !important; */
+    background: linear-gradient(to bottom, #ff9100, #e83420) !important;
+}
+
+/* Cambia el color de los enlaces del sidebar */
+.nav-sidebar .nav-link {
+    color: black !important;
+}
+
+/* Cambia el color de fondo de los menús */
+.nav-sidebar .nav-treeview {
+    background-color: #ffa726 !important;
+}
+
+.nav-link {
+    transition: background-color 0.5s ease !important;
+}
+
+.nav-link:hover {
+    background-color: #ffa726 !important;
+}
+
+
+/* Cambia el color de fondo del menú seleccionado */
+.nav-sidebar .nav-link.active {
+    background-color: #ffa726 !important;
+}
+
+/* Change the font size */
+.nav-sidebar .nav-link {
+    font-size: 16px !important;
+    /*// adjust the value as needed */
+    color: rgb(255, 255, 255) !important;
+}
+
+/* Change the font family */
+/* body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif !important; // adjust the value as needed
+} */
+
+
+/* Cambia el color de fondo del header */
+.main-header {
+    /* background-color: #5a16d8 !important; */
+    background-color: #ff9100 !important
+    /* background: linear-gradient(to right, #ff9100, #e83420) !important; */
+}
+
+.brand-link {
+    background-color: #ffa726 !important;
+
+}
+
+.btn-primary {
+    background-color: rgb(29, 136, 118) !important;
+}
+
+.d-block {
+    color: aliceblue !important;
+    font-size : 14px !important;
+    word-wrap: break-word;
+}

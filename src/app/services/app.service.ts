@@ -146,7 +146,8 @@ export class AppService {
     obtenerProfile() {
         const token = localStorage.getItem('token');
         const decode = jwtDecode<TokenPayload>(token);
-        //console.log('DECODE', decode);
+        //  console.log('DECODE', decode);
+        //  console.log('token', token);
         const currentPage = this.router.url;
         //console.log('La página actual es', currentPage);
         return decode;

@@ -8,9 +8,13 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css');
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700');
 
+@import '~material-icons/iconfont/material-icons.css';
+
 @import '~admin-lte/plugins/fontawesome-free/css/all.min.css';
 @import '~admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css';
-@import '~admin-lte/dist/css/adminlte.min.css';
+@import '~admin-lte/dist/css/adminlte.css';
+
+@import '/src/assets/abrete.css';
 
 @import 'ngx-toastr/toastr';
 
@@ -48,30 +52,5 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
-// // Cambia el color de fondo del sidebar
-// .sidebar-dark-primary {
-//     background-color: chocolate !important;
-// }
 
-// // Cambia el color de los enlaces del sidebar
-// .nav-sidebar .nav-link {
-//     color: black !important;
-// }
-// // Cambia el color de fondo de los menús
-// // .nav-sidebar .nav-treeview {
-// //     background-color: blue !important;
-// // }
 
-// // Cambia el color de fondo del menú seleccionado
-// .nav-sidebar .nav-link.active {
-//     background-color: goldenrod !important;
-// }
-// // Change the font size
-// .nav-sidebar .nav-link {
-//     font-size: 16px !important; // adjust the value as needed
-// }
-
-// // Change the font family
-// body {
-//     font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif !important; // adjust the value as needed
-// }

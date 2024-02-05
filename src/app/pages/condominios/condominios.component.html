@@ -1,13 +1,11 @@
 <!-- Main content -->
-<section class="content">
+<section class="content mt-2">
     <!-- Default box -->
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Lista de Condominios</h3>
-                <mat-card-header>
-                  <button style="margin-left: 80%;" *appShowforroles="['admin']" (click)="Openpopup()" mat-raised-button color="primary">Nuevo Condominio (+)</button>
-              </mat-card-header>
+                  <button style="float: right;" *appShowforroles="['admin']" (click)="Openpopup()" mat-raised-button color="primary">Nuevo Condominio (+)</button>
             </div>
             <div class="card-body">
                 <div class="container-fluid">

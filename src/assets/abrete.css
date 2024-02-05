@@ -53,12 +53,84 @@
 
 }
 
-.btn-primary {
+/* .btn-primary {
     background-color: rgb(29, 136, 118) !important;
+} */
+
+.btn-primary {
+    padding: 6px 12px !important; /* Tamaño más pequeño */
+    font-size: 14px !important; /* Tamaño de fuente más pequeño */
+    color: #fff !important;
+    background-color: #ffa500 !important; /* Color primario con !important */
+    border: none !important; /* Sin borde para igualar con el estilo de PicoCSS */
+    border-radius: 20px !important; /* Esquinas redondeadas */
+    cursor: pointer !important;
+    transition: background-color 0.3s, color 0.3s !important;
 }
+
+.btn-primary:hover {
+    background-color: #fff !important; /* Fondo blanco al pasar el ratón */
+    color: #ffa500 !important; /* Color de texto primario al pasar el ratón */
+}
+
+
+.btn-danger {
+    padding: 6px 12px !important; /* Tamaño más pequeño */
+    font-size: 14px !important; /* Tamaño de fuente más pequeño */
+    color: #fff !important;
+    background-color: #dc3545 !important; /* Color peligroso */
+    border: none !important; /* Sin borde para igualar con el estilo de PicoCSS */
+    border-radius: 20px !important; /* Esquinas redondeadas */
+    cursor: pointer !important;
+    transition: background-color 0.3s, color 0.3s !important;
+}
+ 
+.btn-danger:hover {
+    background-color: #fff !important; /* Fondo blanco al pasar el ratón */
+    color: #dc3545 !important; /* Color de texto peligroso al pasar el ratón */
+}
+
+
+
+
+
+/* Título del card */
+.card-title {
+    font-family: 'Arial', sans-serif !important;
+    color: #0056b3 !important; /* Azul del título */
+    font-size: 32px !important;
+    font-weight: bold !important;
+}
+
+
+/* Estilos de la tabla */   
+.table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+}
+ 
+.table th, .table td {
+    text-align: left !important;
+    padding: 0.5rem !important;
+    border-bottom: 1px solid #ddd !important;
+}
+ 
+.table th {
+    background-color: #0056b3 !important;
+    color: white !important;
+}
+ 
+
 
 .d-block {
     color: aliceblue !important;
     font-size : 14px !important;
     word-wrap: break-word;
 }
+
+
+
+/* Estilos CCollin */
+
+
+/* Estilos de botones primarios y de peligro */ 

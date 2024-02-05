@@ -1,14 +1,11 @@
-<!-- <app-portones (callParentMethod)="listarPortones('1')"></app-portones>        -->
 <section class="content">
     <!-- Default box -->
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Lista de Portones Condominios</h3>
-                <mat-card-header>
-                    <button style="margin-left: 80%;" *appShowforroles="['admin']" (click)="add()" mat-raised-button
+                    <button style="float: right;" *appShowforroles="['admin']" (click)="add()" mat-raised-button
                         color="primary">Nuevo Porton (+)</button>
-                </mat-card-header>
             </div>
             <div class="card-body">
                 <div class="container-fluid">
@@ -31,8 +28,7 @@
                                         <td>{{ porton.Nombre }}</td>
                                         <td>{{ porton.Descripcion }}</td>
                                         <td>
-                                            <button (click)="editcustomer(porton.PortonID)" mat-raised-button
-                                                color="primary">Actualizar</button>
+                                            <button class="btn btn-primary" (click)="editcustomer(porton.PortonID)" mat-raised-button color="primary">Editar</button>
                                             <button class="btn btn-danger"
                                                 (click)="deletePorton(porton.PortonID)">Eliminar</button>
                                         </td>
